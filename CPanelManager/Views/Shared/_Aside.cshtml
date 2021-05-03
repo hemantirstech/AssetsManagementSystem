@@ -1,0 +1,77 @@
+﻿@using CPanelManager.Helpers
+@using Microsoft.AspNetCore.Http;
+@using CPanelManager.ViewModels.Account;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@{ 
+    var MenuModel = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<ProfileMenuRightsViewModel>("MenuDetail"); 
+}
+
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel" style="height:100%">
+
+    <!-- User info -->
+    @{ await Html.RenderPartialAsync("_CurrentUser"); }
+    <!-- end user info -->
+    <!-- NAVIGATION : This navigation is also responsive
+
+    To make this navigation dynamic please make sure to link the node
+    (the reference to the nav > ul) after page load. Or the navigation
+    will not initialize.
+    -->
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
+
+        <ul>
+            @if (MenuModel != null && MenuModel.ValidateAccountViewModelList != null && MenuModel.ValidateAccountViewModelList.Count >0)
+            {
+                foreach (var Menu in MenuModel.ValidateAccountViewModelList.Where(a => a.ParentMasterFunctionId == 0).OrderBy(a => a.Sequence))
+                {
+                    if (Menu.FunctionLink != null && Menu.FunctionLink != "")
+                    {
+                        <li class="@Html.RouteIf("index", "active")">
+                            <a href="@Menu.FunctionLink" title="@Menu.FunctionTitle">
+                                <i class="@Menu.FunctionIcon" style="color:@Menu.FunctionIconColour"></i>
+                                <span class="menu-item-parent">@Menu.FunctionTitle</span>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+
+                        <li class="@Html.RouteIf("index", "active")">
+                            <a href="#" title="@Menu.FunctionTitle">
+                                <i class="@Menu.FunctionIcon" style="color:@Menu.FunctionIconColour"></i>
+                                <span class="menu-item-parent">@Menu.FunctionTitle</span>
+                            </a>
+                            <ul>
+                            @foreach (ValidateAccountViewModel SubMenu in MenuModel.ValidateAccountViewModelList.Where(a => a.ParentMasterFunctionId == Menu.MasterFunctionId).OrderBy(a => a.Sequence))
+                            {
+                                <li>
+                                    <a href="@SubMenu.FunctionLink" title="@SubMenu.FunctionTitle">
+                                        <i class="@SubMenu.FunctionIcon"></i>
+                                        <span class="menu-item-parent">@SubMenu.FunctionTitle</span>
+                                    </a>
+                                </li>
+                            }
+                            </ul>
+                        </li>
+                    }
+                }
+            }
+            else
+            {
+                Url.Action("Login", "Account");
+            }
+
+        </ul>
+    </nav>
+    <span class="minifyme" data-action="minifyMenu">
+        <i class="fa fa-arrow-circle-left hit"></i>
+    </span>
+
+</aside>
+<!-- END NAVIGATION -->

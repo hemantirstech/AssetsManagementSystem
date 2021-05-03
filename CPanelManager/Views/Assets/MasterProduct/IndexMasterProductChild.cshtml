@@ -1,0 +1,192 @@
+﻿@model CPanelManager.ViewModels.MasterProduct.IndexMasterProductChildViewModel
+
+@{
+    ViewData["Title"] = "MasterProduct/Index";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="UpdateMasterChildProduct" id="MasterProductChild-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    <b>@Model.ProductTitle</b>
+                <span>
+                    >
+                    @Model.CategoryTitle / @Model.SubCategoryTitle
+                    @*<br />SKU. : @Model.ProductSKU*@
+                </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6" style="text-align:right;padding-top:10px;">
+                <input type="hidden" asp-for="MasterProductId" />
+                
+                <button id="btnUpdate" type="submit" class="btn btn-lg btn-labeled btn-info" onclick="return confirm('Are you sure you wish to update child product?');">
+                    <span class="btn-label"><i class="glyphicon glyphicon-save"></i></span>Update 
+                </button>
+                
+                <a asp-action="ViewMasterProduct" asp-route-MasterProductId="@Model.MasterProductId" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+                <a asp-action="AddMasterProductChild" asp-route-MasterProductId="@Model.MasterProductId" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>Add New
+                </a>
+            </div>
+        </div>
+
+       
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <table id="dt_basic" class="table table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th data-hide="phone" style="width:5%"> Repair</th>
+                                            <th data-hide="phone" style="width:5%"> Dead</th>
+                                            <th data-class="expand" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> SKU / Serial No</th>
+                                            <th data-class="expand" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Assign Detail</th>
+                                            <th data-hide="phone,tablet" style="width:20%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Purchase Detail</th>
+                                            <th data-hide="phone,tablet" style="width:10%;text-align:right;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> D. Price</th>
+                                            <th data-hide="phone,tablet" style="width:10%;text-align:right;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> War. Expire</th>
+                                            <th data-hide="phone" style="width:5%"> Sale</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var Item in Model.ProductAssignChildList)
+                                        {
+                                        <tr>
+                                            
+                                            <td style="text-align:center;">
+                                                @if (Item.IsActive == false && Item.IsDeadAssets == false && Item.IsSaleProduct == false)
+                                                {
+                                                    @if (Item.IsActive == false)
+                                                    {
+                                                        <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            <input style="float:inherit;" type="checkbox" id="chkbtnIsRepairs" class="checkBoxRepair" name="IsRepairs" value="@Item.MasterProductChildId">
+                                                }
+                                            </td>
+
+                                            <td style="text-align:center;">
+                                                @if (Item.IsDeadAssets == true || Item.IsSaleProduct == true)
+                                                {
+                                                    @if (Item.IsDeadAssets == true)
+                                                    {
+                                                        <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <input style="float:inherit;" type="checkbox" id="chkbtnIsDeadAssets" class="checkBoxDeadAsset" name="IsDeadAssets" value="@Item.MasterProductChildId">
+                                                }
+                                            </td>
+
+                                            <td>
+                                                <b>@Item.CompanyOwnerTitle</b><br />
+                                                @if (Item.IsDeadAssets == false && Item.IsSaleProduct == false)
+                                                {
+                                                    <b>@Html.ActionLink(Item.ProductChildSKU, "ViewMasterProductChild", new { MasterProductChildId = Item.MasterProductChildId }, htmlAttributes: new { id = "loginLink" })</b><br />
+                                                }
+                                                else
+                                                {
+                                                    <b>@Item.ProductChildSKU</b><br />
+                                                }
+                                                Sr. No.: @Item.ManufacturerPartNumber
+                                            </td>
+                                            <td>
+                                                <b>Branch: @Item.BranchTitle</b><br />
+                                                Assign To: @Item.EmployeeName<br />
+                                                Assign Date:   @Item.AssetsAssignmentDate?.ToString("dd-MM-yyyy")
+
+                                            </td>
+                                            <td>
+                                                <b>Vendor: @Item.VendorTitle</b>
+                                                <br />Date: @Item.PurchaseDate?.ToString("dd-MM-yyyy")
+                                                <br />Price: @Item.PurchasePrice
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @Item.DepreciatePrice
+                                            </td>
+
+                                            <td style="text-align: right;">
+                                                @Item.WarrantyExpiryDate?.ToString("dd-MM-yyyy")
+                                            </td>
+                                            <td style="text-align:center;">
+                                                @if (Item.IsDeadAssets == true || Item.IsSaleProduct == true)
+                                                {
+                                                    @if (Item.IsSaleProduct == true)
+                                                    {
+                                                        <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <input style="float:inherit;" type="checkbox" id="chkbtnIsSaleProducts" class="checkBoxSaleProduct" name="IsSaleProducts" value="@Item.MasterProductChildId">
+                                                }
+                                            </td>
+
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+
+<script type="text/javascript">
+    
+</script>
+    <script src="~/js/Views/MasterProduct/Index.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

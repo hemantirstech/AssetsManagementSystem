@@ -1,0 +1,8 @@
+2021-04-03T12:51:33.9421823+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-04-03T12:51:33.9660757+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-04-03T12:51:33.9699948+05:30  [INF] Content root path: "E:\Application And Project\AssetsManagementSystem\CPanelManager" (b5d60022)
+2021-04-03T12:51:46.2134366+05:30 8000003b-0005-fc00-b63f-84710c7967bb [INF] User AMIT KUBADE successfully logged in. (c1be5eb9)
+2021-04-03T15:30:21.4640788+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-04-03T15:30:21.4758594+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-04-03T15:30:21.4799821+05:30  [INF] Content root path: "E:\Application And Project\AssetsManagementSystem\CPanelManager" (b5d60022)
+2021-04-03T15:30:41.7853146+05:30 80000314-0007-fb00-b63f-84710c7967bb [INF] User AMIT KUBADE successfully logged in. (c1be5eb9)

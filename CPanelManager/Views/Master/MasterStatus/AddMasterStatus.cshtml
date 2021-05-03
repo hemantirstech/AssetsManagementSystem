@@ -1,0 +1,275 @@
+﻿@model CPanelManager.ViewModels.MasterStatus.AddMasterStatusViewModel
+
+@{
+    ViewData["Title"] = "Master Status";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="SaveMasterStatus" id="MasterStatus-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    Master Status
+                    <span>
+                        >
+                        View
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+
+                <input type="hidden" asp-for="MasterStatusId" />
+           
+                <input type="hidden" asp-for="Mode" />
+
+                <a asp-action="Index" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+                <button id="btnsave" type="submit" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>Save / Update
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="well">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <h1 class="semi-bold">Master Status</h1>
+                    <p>
+                        Licence Agrement is basic setting for running application as per subscription.
+                        Which maintain information related to company basic detail, sms and mail setting, company logo and other company registration detail.
+                        A subscription-based pricing model is a payment structure that allows a customer or organization to purchase or subscribe to a vendor's IT services for a specific period of time for a set price.
+                        Subscribers typically commit to the services on a monthly or annual basis.
+                    </p>
+
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <div class="alert alert-block alert-success">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
+            <p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </p>
+        </div>
+
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-7">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>Company Detail </h2>
+
+                        </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form" novalidate="novalidate">
+                                    <header>
+                                        Status Detail
+                                    </header>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Color</label>
+                                                <label class="select">
+
+                                                    @Html.DropDownList("MasterColorId", (SelectList)ViewBag.ColorList, new { @class = "input-sm", id = "MasterColorId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterColorId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="label">Status Code</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-tag"></i>
+                                                    <input asp-for="StatusCode" placeholder="Status Code" maxlength="10" oninput="this.value = this.value.toUpperCase()" />
+                                                    <span asp-validation-for="StatusCode" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+                                            <section>
+                                                <label class="label">Status Title</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-user"></i>
+                                                    <input asp-for="StatusTitle" placeholder="Status Title" maxlength="100"/>
+                                                    <span asp-validation-for="StatusTitle" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                </article>
+                <!-- END COL -->
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-5">
+
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+
+
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+    
+    <script type="text/javascript">
+
+        @*var MasterStatusId = "@Model.MasterStatusId";
+       
+        if (MasterStatusId == "1") {
+            $('#MasterStatusId').prop('checked', true);
+        }
+        else {
+            $('#MasterStatusId').prop('checked', false);
+        }*@
+
+        var loadFile = function (event) {
+            var output = document.getElementById('imgCompanyLogo')
+            output.src = URL.createObjectURL(event.target.files[0]);
+            $("#CompanyLogo").val($("#file").val().split('\\').pop().split('/').pop());
+        };
+
+        DropDownFill();
+
+        $("#MasterCountryId").change(function () {
+            DropDownFill();
+        })
+
+        function DropDownFill() {
+
+            $("#MasterStatusId").prop('disabled', true);
+            var url = "/Common/DropDownFill";
+            var _Country = $("#MasterCountryId").val();
+            var _Status = "@Model.";
+           
+            var data = [];
+            $.getJSON(url, { TableName: "ADMasterStatus", MasterId: _Country, Type: 'ID'}, function (data) {
+               
+                data = $.parseJSON(data)
+                FillDropdown("MasterStatusId", data)
+                
+                if (data.length >= 1) {
+                    $("#MasterStatusId").prop('disabled', false);
+                    $("#MasterStatusId").val(_Status).attr("selected", true);
+                }
+                else {
+                    $("#MasterStatusId").prop('disabled', true);
+                }
+            });
+
+        }
+
+        function FillDropdown(selector, json) {
+            if (json.length >= 1) {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+                json = json || {};
+                
+                for (var i = 0; i < json.length; i++) {
+                    $('#' + selector).append('<option value="' + json[i].MasterId + '">' + json[i].MasterName + '</option>');
+                }
+            }
+            else {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+            }
+        }
+
+
+        $(document).ready(function () {          
+
+            $("#City").autocomplete({
+
+                source: function (request, response) {
+
+                    var MastCode = $("#City").val();
+                    //alert(MastCode);
+                    
+                    $.ajax({
+                        url: "/Common/DropDownFill",
+                        type: "POST",
+                        dataType: "json",
+                        data: { TableName: "ADMasterCityAuto", MasterId: 0, Type: MastCode },
+                        success: function (data) {
+                            data = $.parseJSON(data);
+                            response($.map(data, function (item) {
+                                return { label: item.MasterName, value: item.MasterName };
+                            }))
+                        }
+                    })
+
+                },
+                messages: {
+                    noResults: "", results: ""
+                },
+                minLength: 0,
+                select: function (event, ui) {
+                    //alert(ui.item.value);
+                    $("#City").val(ui.item.value);
+                }
+            });            
+        });
+
+        
+    </script>
+
+
+    <script src="~/js/Views/MasterBranch/AddMasterBranch.js"></script>
+
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+

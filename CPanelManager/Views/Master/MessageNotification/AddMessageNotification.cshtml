@@ -1,0 +1,365 @@
+﻿@model CPanelManager.ViewModels.MessageNotification.AddMessageNotificationViewModel
+
+@{
+    ViewData["Title"] = "MessageNotification";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="SaveMessageNotification" id="MessageNotification-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    MessageNotification
+                    <span>
+                        >
+                        View
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+
+                <input type="hidden" asp-for="MasterMessageNotificationId" />
+                <input type="hidden" asp-for="MasterCompanyId" />
+                <input type="hidden" asp-for="MasterBranchId" />
+                <input type="hidden" asp-for="Mode" />
+
+                <a asp-action="Index" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+                <button id="btnsave" type="submit" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>Save / Update
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="well">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <h1 class="semi-bold">MessageNotification</h1>
+                    <p>
+                        Licence Agrement is basic setting for running application as per subscription.
+                        Which maintain information related to company basic detail, sms and mail setting, company logo and other company registration detail.
+                        A subscription-based pricing model is a payment structure that allows a customer or organization to purchase or subscribe to a vendor's IT services for a specific period of time for a set price.
+                        Subscribers typically commit to the services on a monthly or annual basis.
+                    </p>
+
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <div class="alert alert-block alert-success">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
+            <p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </p>
+        </div>
+
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>Company Detail </h2>
+
+                        </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form" novalidate="novalidate">
+                                    <header>
+                                        MessageNotification Detail
+                                    </header>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Message Date</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar-o"></i>
+                                                    <input asp-for="MessageDate" placeholder="Message Date" maxlength="100" />
+                                                    <span asp-validation-for="MessageDate" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="label">Message Type</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterMessageTypeId", (SelectList)ViewBag.MessageTypeList, new { @class = "input-sm", id = "MasterMessageTypeId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterMessageTypeId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Message From</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-user"></i>
+                                                    <input asp-for="MessageFrom" placeholder="Message From" maxlength="10" oninput="this.value = this.value.toUpperCase()" />
+                                                    <span asp-validation-for="MessageFrom" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="label">Message To</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-tag"></i>
+                                                    <input asp-for="MessageTo" placeholder="Message To" maxlength="10" oninput="this.value = this.value.toUpperCase()" />
+                                                    <span asp-validation-for="MessageTo" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">MessageTitle</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-user"></i>
+                                                    <input asp-for="MessageTitle" placeholder="Message Title" maxlength="100" />
+                                                    <span asp-validation-for="MessageTitle" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="label">MessageDescription</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-tag"></i>
+                                                    <input asp-for="MessageDescription" placeholder="MessageDescription" maxlength="100" />
+                                                    <span asp-validation-for="MessageDescription" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-2">
+                                                <label class="label">IsRead</label>
+                                                <label class="toggle">
+                                                    <input type="checkbox" id="IsRead" name="IsRead" value="true" checked="checked">
+                                                    <i data-swchon-text="True" data-swchoff-text="False"></i>
+                                                </label>
+                                                <span asp-validation-for="IsRead" class="text-danger"></span>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="label">IsSend</label>
+                                                <label class="toggle">
+                                                    <input type="checkbox" id="IsSend" name="IsSend" value="true" checked="checked">
+                                                    <i data-swchon-text="True" data-swchoff-text="False"></i>
+                                                </label>
+                                                <span asp-validation-for="IsSend" class="text-danger"></span>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="label">IsDelete</label>
+                                                <label class="toggle">
+                                                    <input type="checkbox" id="IsDelete" name="IsDelete" value="true" checked="checked">
+                                                    <i data-swchon-text="True" data-swchoff-text="False"></i>
+                                                </label>
+                                                <span asp-validation-for="IsDelete" class="text-danger"></span>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">ShareTo</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-tag"></i>
+                                                    <input asp-for="ShareTo" placeholder="ShareTo" maxlength="100" />
+                                                    <span asp-validation-for="ShareTo" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Company</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterCompanyId", (SelectList)ViewBag.CompanyList, new { @class = "input-sm", id = "MasterCompanyId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterCompanyId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="label">Branch</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterBranchId", (SelectList)ViewBag.BranchList, new { @class = "input-sm", id = "MasterBranchId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterBranchId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+
+
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+    
+    <script type="text/javascript">
+
+        var MasterMessageNotificationId = "@Model.MasterMessageNotificationId";
+       
+        if (IsRead == "1") {
+            $('#IsRead').prop('checked', true);
+            }
+            else {
+            $('#IsRead').prop('checked', false);
+
+            if (IsSend == "1") {
+                $('#IsSend').prop('checked', true);
+            }
+            else {
+                $('#IsSend').prop('checked', false);
+
+                if (IsDelete == "1") {
+                    $('#IsDelete').prop('checked', true);
+                }
+                else {
+                    $('#IsDelete').prop('checked', false);
+        }
+
+        var loadFile = function (event) {
+            var output = document.getElementById('imgCompanyLogo')
+            output.src = URL.createObjectURL(event.target.files[0]);
+            $("#CompanyLogo").val($("#file").val().split('\\').pop().split('/').pop());
+        };
+
+        DropDownFill();
+
+        $("#MasterCountryId").change(function () {
+            DropDownFill();
+        })
+
+        function DropDownFill() {
+
+            $("#MasterStateId").prop('disabled', true);
+            var url = "/Common/DropDownFill";
+            var _Country = $("#MasterCountryId").val();
+            var _State = "@Model.";
+           
+            var data = [];
+            $.getJSON(url, { TableName: "ADMasterState", MasterId: _Country, Type: 'ID'}, function (data) {
+               
+                data = $.parseJSON(data)
+                FillDropdown("MasterStateId", data)
+                
+                if (data.length >= 1) {
+                    $("#MasterStateId").prop('disabled', false);
+                    $("#MasterStateId").val(_State).attr("selected", true);
+                }
+                else {
+                    $("#MasterStateId").prop('disabled', true);
+                }
+            });
+
+        }
+
+        function FillDropdown(selector, json) {
+            if (json.length >= 1) {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+                json = json || {};
+                
+                for (var i = 0; i < json.length; i++) {
+                    $('#' + selector).append('<option value="' + json[i].MasterId + '">' + json[i].MasterName + '</option>');
+                }
+            }
+            else {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+            }
+        }
+
+
+        $(document).ready(function () {          
+
+            $("#City").autocomplete({
+
+                source: function (request, response) {
+
+                    var MastCode = $("#City").val();
+                    //alert(MastCode);
+                    
+                    $.ajax({
+                        url: "/Common/DropDownFill",
+                        type: "POST",
+                        dataType: "json",
+                        data: { TableName: "ADMasterCityAuto", MasterId: 0, Type: MastCode },
+                        success: function (data) {
+                            data = $.parseJSON(data);
+                            response($.map(data, function (item) {
+                                return { label: item.MasterName, value: item.MasterName };
+                            }))
+                        }
+                    })
+
+                },
+                messages: {
+                    noResults: "", results: ""
+                },
+                minLength: 0,
+                select: function (event, ui) {
+                    //alert(ui.item.value);
+                    $("#City").val(ui.item.value);
+                }
+            });            
+        });
+
+        
+    </script>
+
+
+    <script src="~/js/Views/MasterBranch/AddMasterBranch.js"></script>
+
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+

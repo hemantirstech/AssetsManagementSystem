@@ -1,0 +1,279 @@
+﻿@model CPanelManager.ViewModels.MasterLogin.AddMasterLoginViewModel
+
+@{
+    ViewData["Title"] = "AddMasterLogin";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="SaveMasterLogin" id="MasterLogin-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    MasterLogin
+                    <span>
+                        >
+                        Add / View
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+                <input type="hidden" asp-for="MasterLoginId" />
+                <input type="hidden" asp-for="MasterRegistrationId" />
+                <input type="hidden" asp-for="Mode" />
+
+                <a asp-action="Index" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+                <button id="btnsave" type="submit" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>Save / Update
+                </button>
+            </div>
+        </div>
+
+        
+
+        <div class="alert alert-block alert-success">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
+            <p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </p>
+        </div>
+
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-7">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form" novalidate="novalidate">
+                                    <header>
+                                        User Master
+                                    </header>
+
+                                    <fieldset>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Type</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterRegistrationTypeId", (SelectList)ViewBag.RegistrationTypeList, new { @class = "input-sm", id = "MasterRegistrationTypeId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterRegistrationTypeId" class="text-danger"></span>
+                                                </label>
+                                                <div class="note">
+                                                    <strong>Note:</strong> Select Parent Menu if menu is parent.
+                                                </div>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Profile</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterProfileId", (SelectList)ViewBag.ProfileList, new { @class = "input-sm", id = "MasterProfileId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterProfileId" class="text-danger"></span>
+                                                </label>
+                                                <div class="note">
+                                                    <strong>Note:</strong> Select Parent Menu if menu is parent.
+                                                </div>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Branch</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-briefcase"></i>
+                                                    <input asp-for="BranchTitle" readonly placeholder="BranchTitle" maxlength="100" />
+                                                    <span asp-validation-for="BranchTitle" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Name</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-user"></i>
+                                                    <input asp-for="RegistrationTitle" readonly placeholder="Title" maxlength="100" />
+                                                    <span asp-validation-for="RegistrationTitle" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">UserName</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-envelope-o"></i>
+                                                    <input asp-for="UserName" placeholder="Title" maxlength="100" />
+                                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-3">
+                                                <label class="label">Verified</label>
+                                                <label class="toggle">
+                                                    <input type="checkbox" id="IsVerified" name="IsVerified" value="true" checked="checked">
+                                                    <i data-swchon-text="True" data-swchoff-text="False"></i>
+                                                </label>
+                                                <span asp-validation-for="IsVerified" class="text-danger"></span>
+                                            </section>
+
+                                            <section class="col col-3">
+                                                <label class="label">Active</label>
+                                                <label class="toggle">
+                                                    <input type="checkbox" id="IsActive" name="IsActive" value="true" checked="checked">
+                                                    <i data-swchon-text="True" data-swchoff-text="False"></i>
+                                                </label>
+                                                <span asp-validation-for="IsActive" class="text-danger"></span>
+                                            </section>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Password</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-key"></i>
+                                                    <input asp-for="Password" readonly placeholder="Password" maxlength="100" />
+                                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            @*<section class="col col-6">
+                                                <label class="label">Confirm Password</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-tag"></i>
+                                                    <input asp-for="Password" placeholder="Password" maxlength="100" />
+                                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                                </label>
+                                            </section>*@
+                                        </div>
+
+                                    </fieldset>
+
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-5">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <div class="well">
+                                        <button class="close" data-dismiss="alert">
+                                            ×
+                                        </button>
+                                        <h1 class="semi-bold">MasterLogin</h1>
+                                        <p>
+                                            Licence Agrement is basic setting for running application as per subscription.
+                                            Which maintain information related to company basic detail, sms and mail setting, company logo and other company registration detail.
+                                            A subscription-based pricing model is a payment structure that allows a customer or organization to purchase or subscribe to a vendor's IT services for a specific period of time for a set price.
+                                            Subscribers typically commit to the services on a monthly or annual basis.
+                                        </p>
+
+                                       
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+            </div>
+            <!-- END ROW -->
+
+
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var IsActive = "@Model.IsActive";
+
+        if (IsActive == "True") {
+            $('#IsActive').prop('checked', true);
+        }
+        else {
+            $('#IsActive').prop('checked', false);
+        }
+
+        var IsVerified = "@Model.IsVerified";
+
+        if (IsVerified == "True") {
+            $('#IsVerified').prop('checked', true);
+        }
+        else {
+            $('#IsVerified').prop('checked', false);
+        }
+
+
+
+
+    </script>
+
+    <script src="~/js/Views/MasterLogin/AddMasterLogin.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

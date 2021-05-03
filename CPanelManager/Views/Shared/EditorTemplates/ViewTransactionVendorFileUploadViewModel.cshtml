@@ -1,0 +1,39 @@
+﻿@model CPanelManager.ViewModels.TransactionVendorFileUpload.ViewTransactionVendorFileUploadViewModel
+
+
+    <tr>
+
+        <td>
+            @Html.HiddenFor(a => a.UploadFile)
+            @Html.DisplayFor(a => a.UploadFile, new { @style = "width:100% ;text-align:left;font-size:12px;" })
+
+        </td>
+        <td>
+            @*<b>@Model.TransactionVendorFileName  </b>*@
+            @Html.HiddenFor(a => a.TransactionVendorFileUploadId)
+            @Html.HiddenFor(a => a.MasterVendorId)
+            @Html.HiddenFor(a => a.TransactionVendorFileName)
+            @Html.DisplayFor(a => a.TransactionVendorFileName, new { @style = "width:100% ;text-align:left;font-size:12px;" })
+
+        </td>
+        <td>
+            @Html.HiddenFor(a => a.Sequence)
+            @Html.DisplayFor(a => a.Sequence, new { @style = "width:100% ;text-align:left;font-size:12px;" })
+        </td>
+        @*<td>
+            @Html.CheckBoxFor(a => a.IsSelect, new { @class = "ChkRead" })
+        </td>
+        <td>
+            @Html.CheckBoxFor(a => a.IsInsert, new { @class = "ChkInsert" })
+        </td>
+        <td>
+            @Html.CheckBoxFor(a => a.IsUpdate, new { @class = "ChkUpdate" })
+        </td>
+        <td>
+            @Html.CheckBoxFor(a => a.IsDelete, new { @class = "ChkDelete" })
+        </td>
+        <td>
+            @Html.CheckBoxFor(a => a.IsActive, new { @class = "CheckAll", onchange = "funCheckAll()" })
+        </td>*@
+    </tr>
+

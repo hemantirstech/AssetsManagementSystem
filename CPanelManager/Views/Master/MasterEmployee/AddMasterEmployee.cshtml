@@ -1,0 +1,708 @@
+﻿@model CPanelManager.ViewModels.MasterEmployee.AddMasterEmployeeViewModel
+
+@{
+    ViewData["Title"] = "Master Employee";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="SaveMasterEmployee" id="MasterEmployee-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    Master Employee
+                    <span>
+                        >
+                        View
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+
+                <input type="hidden" asp-for="MasterEmployeeId" />
+                <input type="hidden" asp-for="Mode" />
+
+                <a asp-action="Index" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+                <button id="btnsave" type="submit" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>Save / Update
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="well">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <h1 class="semi-bold">Master Employee </h1>
+                    <p>
+                        Master Employee is to add the employee to the specific company and branch. By selecting the company name and the respective branch and by entering the details about the employee we can save the empoyee details.
+                    </p>
+
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <div class="alert alert-block alert-success">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
+            <p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </p>
+        </div>
+
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-7">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>Employee Detail </h2>
+
+                        </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form" novalidate="novalidate">
+                                    <header>
+                                        Employee Detail
+                                    </header>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Company</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterCompanyId", (SelectList)ViewBag.CompanyList, new { @class = "input-sm", id = "MasterCompanyId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterCompanyId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Branch</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterBranchId", (SelectList)ViewBag.BranchList, new { @class = "input-sm", id = "MasterBranchId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterBranchId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-4">
+                                                <label class="label">Code</label>
+                                                <label class="input">
+
+                                                    <i class="icon-prepend fa fa-briefcase"></i>
+                                                    <input asp-for="EmployeeCode" placeholder="Employee Code" maxlength="10" oninput="this.value = this.value.toUpperCase()" />
+                                                    <span asp-validation-for="EmployeeCode" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-2">
+                                                <label class="label">Mr/Mrs</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterSalutationId", (SelectList)ViewBag.SalutationList, new { @class = "input-sm", id = "MasterSalutationId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterSalutationId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="label">Employee Name</label>
+                                                <label class="input">
+
+                                                    <i class="icon-prepend fa fa-user"></i>
+                                                    <input asp-for="EmployeeName" placeholder="Employee Name" maxlength="200" oninput="this.value = this.value.toUpperCase()" />
+                                                    <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Date Of Birth</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar-o"></i>
+                                                    <input asp-for="DateOfBirth" placeholder="Date Of Birth" maxlength="150" />
+                                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Gender</label>
+                                                <label class="toggle">
+                                                    <input type="checkbox" id="Gender" name="Gender" value="1" checked="checked">
+                                                    <i data-swchon-text="Male" data-swchoff-text="Female"></i>
+                                                </label>
+                                                <span asp-validation-for="Gender" class="text-danger"></span>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">PAN Number</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-credit-card"></i>
+                                                    <input asp-for="PANNo" placeholder="PAN Number" maxlength="10" oninput="this.value = this.value.toUpperCase()" />
+                                                    <span asp-validation-for="PANNo" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Aadhaar No.</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-github-square"></i>
+                                                    <input asp-for="AadhaarNo" placeholder="Aadhaar No." maxlength="12" oninput="this.value = this.value.toUpperCase()" />
+                                                    <span asp-validation-for="AadhaarNo" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                    </fieldset>
+
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+                                               
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form">
+                                    <header>
+                                        Communication Detail
+                                    </header>
+
+                                    <fieldset>
+
+                                        @*<section>
+                                            <label class="label">Address Type</label>
+                                            <label class="toggle">
+                                                <input type="checkbox" id="MasterAddressTypeId" name="MasterAddressTypeId" value="1" checked="checked">
+                                                <i data-swchon-text="Official" data-swchoff-text="Residential"></i>
+                                            </label>                                                
+                                            <span asp-validation-for="MasterAddressTypeId" class="text-danger"></span>
+                                        </section>*@
+                                        <section>
+                                            <label class="label">Address I</label>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input asp-for="Address1" placeholder="Address I" maxlength="150" />
+                                                <span asp-validation-for="Address1" class="text-danger"></span>
+                                            </label>
+                                        </section>
+                                        <section>
+                                            <label class="label">Address II</label>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input asp-for="Address2" placeholder="Address II" maxlength="150" />
+                                                <span asp-validation-for="Address2" class="text-danger"></span>
+                                            </label>
+                                        </section>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Country</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterCountryId", (SelectList)ViewBag.CountryList, new { @class = "input-sm", id = "MasterCountryId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterCountryId" class="text-danger"></span>
+                                                   
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">State</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterStateId", (SelectList)ViewBag.StateList, new { @class = "input-sm", id = "MasterStateId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterStateId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">City</label>
+                                                <label class="input">                                                    
+                                                    <input asp-for="City" placeholder="City" maxlength="100" autocomplete="off"/>
+                                                    <span asp-validation-for="City" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Pincode</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-pinterest-square"></i>
+                                                    <input asp-for="PinCode" placeholder="Pincode" maxlength="6" onkeypress="javascript: return isIntegerNumberKey(event)"/>
+                                                    <span asp-validation-for="PinCode" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Phone Number</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-phone"></i>
+                                                    <input asp-for="PhoneNumber" placeholder="Phone Number" maxlength="10" onkeypress="javascript: return isIntegerNumberKey(event)"/>
+                                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Mobile Number</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-mobile-phone"></i>
+                                                    <input asp-for="MobileNumber" placeholder="Mobile Number" maxlength="10" onkeypress="javascript: return isIntegerNumberKey(event)"/>
+                                                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Email</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-envelope-o"></i>
+                                                    <input asp-for="Email" placeholder="Email" maxlength="150" />
+                                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                </article>
+                <!-- END COL -->
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-5">
+
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                <h2>Registration Detail </h2>
+            </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form">
+                                    <header>
+                                        Registration Detail
+                                    </header>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Department</label>
+                                                <label class="select">
+
+                                                    @Html.DropDownList("MasterDepartmentId", (SelectList)ViewBag.DepartmentList, new { @class = "input-sm", id = "MasterDepartmentId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterDepartmentId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Designation</label>
+                                                <label class="select">
+
+                                                    @Html.DropDownList("MasterDesignationId", (SelectList)ViewBag.DesignationList, new { @class = "input-sm", id = "MasterDesignationId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterDesignationId" class="text-danger"></span>
+
+                                                </label>
+
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Employee Type</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterEmployeeTypeId", (SelectList)ViewBag.EmployeeTypeList, new { @class = "input-sm", id = "MasterEmployeeTypeId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterEmployeeTypeId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Joining Date</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar-o"></i>
+                                                    <input asp-for="DateOfJoining" placeholder="Joining Date" maxlength="150" />
+                                                    <span asp-validation-for="DateOfJoining" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Reporting Head</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("ReportingHeadId", (SelectList)ViewBag.EmployeeHeadList, new { @class = "input-sm", id = "ReportingHeadId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="ReportingHeadId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Status Of Join</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterEmployeeStatusId", (SelectList)ViewBag.EmployeeStatusList, new { @class = "input-sm", id = "MasterEmployeeStatusId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterEmployeeStatusId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+
+
+                                            <section class="col col-6">
+                                                <lable class="label">Time-Zone</lable>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterTimeZoneId", (SelectList)ViewBag.TimeZoneList, new { @class = "input-sm", id = "MasterTimeZoneId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterTimeZoneId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <lable class="label" style="color:Highlight;"><b>Cost Of Assets Assign</b></lable>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-rupee"></i>
+                                                    <input asp-for="CostOfAssetsAssign" placeholder="Assets Cost" style="color:Highlight;font-weight:bold;" readonly maxlength="10" />
+                                                    <span asp-validation-for="CostOfAssetsAssign" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+
+                                    </fieldset>
+
+                                    
+
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-4" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form">
+                                    <header>
+                                        List Of Assign Assets
+                                    </header>
+                                    <fieldset>
+                                        <section>
+                                            <table class="col-12" style="text-align:center;width:100%;">
+                                                <tr>
+                                                    <td class="col-6" style="background-color:#ffb500;padding-top:10px;font-weight:bold;">TOTAL ASSETS VALUE</td>
+                                                    <td class="col-6" style="background-color:#ffd800;padding-top:10px;font-weight:bold;">DEPRECIATED VALUE</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-6" style="background-color:#ffb500;"><h6><i class="fa fa-rupee"></i> @Model.ProductDetailResultList.Sum(a => a.TotalAssetsCost) </h6></td>
+                                                    <td class="col-6" style="background-color:#ffd800;"><h6><i class="fa fa-rupee"></i> @Model.ProductDetailResultList.Sum(a => a.TotalAssetsDepreciatedValue) </h6></td>
+                                                </tr>
+
+                                            </table>
+                                        </section>
+                                    </fieldset>
+                                    <fieldset>
+                                        <section>
+
+                                            <table class="table table-bordered" width="100%" style="font-size:10px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:20%">Category</th>
+                                                        <th style="width:60%">Assets</th>
+                                                        <th style="width:10%">Cost</th>
+                                                        <th style="width:10%">D. Value</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var Item in Model.ProductDetailResultList)
+                                                    {
+                                                        <tr>
+                                                            <td>@Item.SubCategoryTitle</td>
+                                                            <td>
+                                                                @Item.ProductChildTitle<br />
+                                                                SKU : @Item.ProductChildSKU<br />
+                                                                Sr. No.: @Item.ManufacturerPartNumber
+                                                            </td>
+                                                            <td>@Item.TotalAssetsCost</td>
+                                                            <td>@Item.TotalAssetsDepreciatedValue</td>
+
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+
+
+                                        </section>
+
+                                    </fieldset>
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+
+
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+    
+    <script type="text/javascript">
+
+        var Gender = "@Model.Gender";
+
+        if (Gender == "1") {
+            $('#Gender').prop('checked', true);
+        }
+        else {
+            $('#Gender').prop('checked', false);
+        }
+
+        var loadFile = function (event) {
+            var output = document.getElementById('imgEmployeeLogo')
+            output.src = URL.createObjectURL(event.target.files[0]);
+            $("#EmployeeLogo").val($("#file").val().split('\\').pop().split('/').pop());
+        };
+
+        DropDownFill();
+
+        $("#MasterCountryId").change(function () {
+            DropDownFill();
+        })
+
+        $("#MasterCompanyId").change(function () {
+            DropDownFill();
+        })
+
+        function DropDownFill() {
+
+            $("#MasterBranchId").prop('disabled', true);
+            $("#MasterStateId").prop('disabled', true);
+
+            var url = "/Common/DropDownFill";
+            var _Company = $("#MasterCompanyId").val();
+            var _Branch = "@Model.MasterBranchId";
+
+            var data = [];
+            $.getJSON(url, { TableName: "ADMasterBranch", MasterId: _Company, Type: 'CID'}, function (data) {
+
+                data = $.parseJSON(data)
+                FillDropdown("MasterBranchId", data)
+
+                if (data.length >= 1) {
+                    $("#MasterBranchId").prop('disabled', false);
+                    $("#MasterBranchId").val(_Branch).attr("selected", true);
+                }
+                else {
+                    $("#MasterBranchId").prop('disabled', true);
+                }
+            });
+
+
+            var _Country = $("#MasterCountryId").val();
+            var _State = "@Model.MasterStateId";
+            var data = [];
+            $.getJSON(url, { TableName: "ADMasterState", MasterId: _Country, Type: 'ID' }, function (data) {
+
+                data = $.parseJSON(data)
+                FillDropdown("MasterStateId", data)
+
+                if (data.length >= 1) {
+                    $("#MasterStateId").prop('disabled', false);
+                    $("#MasterStateId").val(_State).attr("selected", true);
+                }
+                else {
+                    $("#MasterStateId").prop('disabled', true);
+                }
+            });
+
+        }
+
+        function FillDropdown(selector, json) {
+            if (json.length >= 1) {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+                json = json || {};
+
+                for (var i = 0; i < json.length; i++) {
+                    $('#' + selector).append('<option value="' + json[i].MasterId + '">' + json[i].MasterName + '</option>');
+                }
+            }
+            else {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+            }
+        }
+
+
+        $(document).ready(function () {
+
+            $("#City").autocomplete({
+
+                source: function (request, response) {
+
+                    var MastCode = $("#City").val();
+                    //alert(MastCode);
+
+                    $.ajax({
+                        url: "/Common/DropDownFill",
+                        type: "POST",
+                        dataType: "json",
+                        data: { TableName: "ADMasterCityAuto", MasterId: 0, Type: MastCode },
+                        success: function (data) {
+                            data = $.parseJSON(data);
+                            response($.map(data, function (item) {
+                                return { label: item.MasterName, value: item.MasterName };
+                            }))
+                        }
+                    })
+
+                },
+                messages: {
+                    noResults: "", results: ""
+                },
+                minLength: 0,
+                select: function (event, ui) {
+                    //alert(ui.item.value);
+                    $("#City").val(ui.item.value);
+                }
+            });
+        });
+
+
+    </script>
+
+
+    <script src="~/js/Views/MasterEmployee/AddMasterEmployee.js"></script>
+
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+

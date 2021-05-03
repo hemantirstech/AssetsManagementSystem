@@ -1,0 +1,32 @@
+﻿@model CPanelManager.ViewModels.ProfileTaskMapping.ViewProfileTaskMappingViewModel
+
+<tr>
+    <td>
+        <b>@Model.ParentFunctionTitle </b>
+        @Html.HiddenFor(a => a.MasterProfileTaskMappingId)
+        @Html.HiddenFor(a => a.MasterProfileId)
+    </td>
+    <td>
+        @Html.HiddenFor(a => a.MasterFunctionId)
+        @Html.HiddenFor(a => a.Mode)
+        @Model.FunctionTitle
+    </td>
+    <td>
+        @Model.FunctionLink
+    </td>
+    <td style="text-align:center;">
+        @Html.CheckBoxFor(a => a.IsSelect, new { @class = "ChkRead" })
+    </td>
+    <td style="text-align:center;">
+        @Html.CheckBoxFor(a => a.IsInsert, new { @class = "ChkInsert" })
+    </td>
+    <td style="text-align:center;">
+        @Html.CheckBoxFor(a => a.IsUpdate, new { @class = "ChkUpdate" })
+    </td>
+    <td style="text-align:center;">
+        @Html.CheckBoxFor(a => a.IsDelete, new { @class = "ChkDelete" })
+    </td>
+    <td style="text-align:center;">
+        @Html.CheckBoxFor(a => a.IsActive, new { @class = "CheckAll", onchange = "funCheckAll()" })
+    </td>
+</tr>

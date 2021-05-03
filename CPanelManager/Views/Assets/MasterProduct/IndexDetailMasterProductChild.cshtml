@@ -1,0 +1,228 @@
+﻿@model CPanelManager.ViewModels.MasterProduct.IndexMasterProductViewModel
+
+@{
+    ViewData["Title"] = "MasterProduct/Index";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="DeleteMasterProduct" id="MasterProduct-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+
+
+                @if (Model.MasterCategoryId > 0)
+                {
+                    <h1 class="page-title txt-color-blueDark">
+                        <i class="fa fa-edit fa-fw "></i>
+                        @Model.CategoryTitle
+                        <span>
+                            >
+                            Index
+                        </span>
+                    </h1>
+                }
+                else if (Model.MasterSubCategoryId > 0)
+                {
+                    <h1 class="page-title txt-color-blueDark">
+                        <i class="fa fa-edit fa-fw "></i>
+                        @Model.SubCategoryTitle
+                        <span>
+                            >
+                            Index
+                        </span>
+                    </h1>
+                }
+                else if (Model.MasterBrandId > 0)
+                {
+                    <h1 class="page-title txt-color-blueDark">
+                        <i class="fa fa-edit fa-fw "></i>
+                        @Model.BrandTitle
+                        <span>
+                            >
+                            Index
+                        </span>
+                    </h1>
+                }
+
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+                <input type="hidden" asp-for="MasterCategoryId" />
+                <input type="hidden" asp-for="MasterSubCategoryId" />
+                <input type="hidden" asp-for="MasterBrandId" />
+
+                <a asp-action="PrintDetailMasterProductChild" asp-route-MasterCategoryId="@Model.MasterCategoryId" asp-route-MasterSubCategoryId="@Model.MasterSubCategoryId" asp-route-MasterBrandId="@Model.MasterBrandId" class="btn btn-lg btn-labeled btn-default" target="_blank">
+                    <span class="btn-label"><i class="glyphicon glyphicon-print"></i></span>Print
+                </a>
+            </div>
+        </div>
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        <header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>MasterProduct </h2>
+
+                        </header>
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <table class="table table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th data-class="expand" style="width:20%"> Product Detail</th>
+                                            <th data-hide="phone" style="width:25%"> Brand & Category</th>
+                                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Total</th>
+                                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Assign</th>
+                                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Repair</th>
+                                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Expire</th>
+                                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Sale</th>
+                                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Dead</th>
+                                            <th data-hide="phone,tablet" style="width:7%;text-align:right;"> Cost</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var Item in Model.MasterProductList)
+                                        {
+                                            <tr style="background-color:cornflowerblue;">
+
+                                                @if (Model.IsUpdate == true)
+                                                {
+                                                    <td>
+                                                        <b>@Html.ActionLink(Item.ProductTitle, "ViewMasterProduct", new { MasterProductId = Item.MasterProductId }, htmlAttributes: new { id = "loginLink" })</b>
+                                                        <br />SKU: @Item.ProductSKU
+                                                        <br />Model: @Item.ProductModel
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <b>@Item.ProductTitle</b>
+                                                        <br />SKU: @Item.ProductSKU
+                                                        <br />Model: @Item.ProductModel
+                                                    </td>
+                                                }
+                                                <td>
+                                                    @Item.BrandTitle
+                                                    <br /> @Item.CategoryTitle / @Item.SubCategoryTitle
+                                                </td>
+                                                <td style="text-align: center;">@Item.TotalAssetsInStock</td>
+                                                <td style="text-align: center;">@Item.AssetsAssign</td>
+                                                <td style="text-align: center;">@Item.AssetsInRepair</td>
+                                                <td style="text-align: center;">@Item.ServiceInExpire</td>
+                                                <td style="text-align: center;">@Item.AssetsInSold</td>
+                                                <td style="text-align: center;">@Item.AssetsInDead</td>
+                                                <td style="text-align: right;">@Item.TotalAssetsCost</td>
+                                                
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan="9">
+                                                    <table class="table table-hover" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th data-class="expand" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> SKU / Serial No</th>
+                                                                <th data-class="expand" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Assign Detail</th>
+                                                                <th data-hide="phone,tablet" style="width:20%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Purchase Detail</th>
+                                                                <th data-hide="phone,tablet" style="width:10%;text-align:right;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> D. Price</th>
+                                                                <th data-hide="phone,tablet" style="width:10%;text-align:right;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> War. Expire</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            @foreach (var Item2 in Item.ProductAssignChildList)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        @if (Item2.IsDeadAssets == false && Item2.IsSaleProduct == false)
+                                                                        {
+                                                                            <b>@Html.ActionLink(Item2.ProductChildSKU, "ViewMasterProductChild", new { MasterProductChildId = Item2.MasterProductChildId }, htmlAttributes: new { id = "loginLink" })</b><br />
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <b>@Item2.ProductChildSKU</b><br />
+                                                                        }
+                                                                        Sr. No.: @Item2.ManufacturerPartNumber
+                                                                    </td>
+                                                                    <td>
+                                                                        <b>Branch: @Item2.BranchTitle</b><br />
+                                                                        Assign To: @Item2.EmployeeName<br />
+                                                                        Assign Date:   @Item2.AssetsAssignmentDate?.ToString("dd-MM-yyyy")
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <b>Vendor: @Item2.VendorTitle</b>
+                                                                        <br />Date: @Item2.PurchaseDate?.ToString("dd-MM-yyyy")
+                                                                        <br />Price: @Item2.PurchasePrice
+                                                                    </td>
+                                                                    <td style="text-align: right;">
+                                                                        @Item2.DepreciatePrice
+                                                                    </td>
+
+                                                                    <td style="text-align: right;">
+                                                                        @Item2.WarrantyExpiryDate?.ToString("dd-MM-yyyy")
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+
+    
+    <script src="~/js/Views/MasterProduct/Index.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

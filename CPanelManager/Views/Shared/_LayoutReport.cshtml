@@ -1,0 +1,79 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>KRITMS - @ViewData["Title"] </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/font-awesome.min.css">
+
+    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-production-plugins.min.css">-->
+    @*<link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-production.min.css">*@
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-skins.min.css">-->
+    <!-- SmartAdmin RTL Support  -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-rtl.min.css">
+
+    <!-- We recommend you use "your_style.css" to override SmartAdmin specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+    <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+    <!-- We recommend you use "your_style.css" to override SmartAdmin specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+    <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+    <style>
+        tr {
+            page-break-inside: avoid !important;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header id="header">
+        <!-- HEADER -->
+        <div id="logo-group">
+
+            <!-- PLACE YOUR LOGO HERE -->
+            <span id="logo"> <img src="~/img/app-images/Image_5f03b37b-c03e-41e3-b877-3e17d6d813f6Logo.png" alt="Knowledge Ridge" width="300px"> </span>
+            <!-- END LOGO PLACEHOLDER -->
+
+        </div>
+    </header>
+    <!-- END HEADER -->
+    <!-- MAIN CONTENT -->
+    <div id="main" role="main">
+        @RenderBody()
+    </div>
+    <!-- END MAIN CONTENT -->
+    <!-- PAGE FOOTER -->
+    @*<div class="page-footer" style="position: absolute; bottom: 10px;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <span class="txt-color-white">Knowledge Ridge Private Limited - Assets Manager © 2021</span>
+                </div>
+            </div>
+        </div>*@
+    <!-- END PAGE FOOTER -->
+    @{ await Html.RenderPartialAsync("_Scripts"); }
+    @RenderSection("scripts", false)
+
+    <!-- PAGE RELATED PLUGIN(S)
+    <script src="..."></script>-->
+    @*<script src="~/js/plugin/moment/moment.min.js"></script>
+    <script src="~/js/plugin/chartjs/chart.min.js"></script>*@
+</body>
+</html>  

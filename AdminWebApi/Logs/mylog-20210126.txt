@@ -1,0 +1,6 @@
+2021-01-26T07:47:33.1376897+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-01-26T07:47:33.1641211+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-01-26T07:47:33.1674289+05:30  [INF] Content root path: "D:\Project & Application\CPanelManager\AdminWebApi" (b5d60022)
+2021-01-26T16:17:20.1111041+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-01-26T16:17:20.1396531+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-01-26T16:17:20.1412968+05:30  [INF] Content root path: "D:\Project & Application\CPanelManager\AdminWebApi" (b5d60022)

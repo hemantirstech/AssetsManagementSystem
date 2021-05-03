@@ -1,0 +1,149 @@
+﻿@model CPanelManager.ViewModels.MasterProduct.IndexMasterProductViewModel
+@using CPanelManager.Helpers
+@{
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
+    ViewData["Title"] = "Master Product";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12" style="text-align:center;">
+            @if (Model.MasterCategoryId > 0)
+            {
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    @Model.CategoryTitle
+                    <span>
+                        >
+                        Index
+                    </span>
+                </h1>
+            }
+            else if (Model.MasterSubCategoryId > 0)
+            {
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    @Model.SubCategoryTitle
+                    <span>
+                        >
+                        Index
+                    </span>
+                </h1>
+            }
+            else if (Model.MasterBrandId > 0)
+            {
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    @Model.BrandTitle
+                    <span>
+                        >
+                        Index
+                    </span>
+                </h1>
+            }
+        </div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-hover" width="100%">
+                
+                <tbody>
+
+                    @foreach (var Item in Model.MasterProductList)
+                    {
+                        <tr style="background-color:cornflowerblue;">
+                            <th data-class="expand" style="width:20%"> Product Detail</th>
+                            <th data-hide="phone" style="width:25%"> Brand & Category</th>
+                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Total</th>
+                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Assign</th>
+                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Repair</th>
+                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Expire</th>
+                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Sale</th>
+                            <th data-hide="phone,tablet" style="width:6%;text-align:center;"> Dead</th>
+                            <th data-hide="phone,tablet" style="width:7%;text-align:right;"> Cost</th>
+
+                        </tr>
+                        <tr style="background-color:darkturquoise;">
+
+                            @if (Model.IsUpdate == true)
+                            {
+                                <td>
+                                    <b>@Html.ActionLink(Item.ProductTitle, "ViewMasterProduct", new { MasterProductId = Item.MasterProductId }, htmlAttributes: new { id = "loginLink" })</b>
+                                    <br />SKU: @Item.ProductSKU
+                                    <br />Model: @Item.ProductModel
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <b>@Item.ProductTitle</b>
+                                    <br />SKU: @Item.ProductSKU
+                                    <br />Model: @Item.ProductModel
+                                </td>
+                            }
+                            <td>
+                                @Item.BrandTitle
+                                <br /> @Item.CategoryTitle / @Item.SubCategoryTitle
+                            </td>
+                            <td style="text-align: center;">@Item.TotalAssetsInStock</td>
+                            <td style="text-align: center;">@Item.AssetsAssign</td>
+                            <td style="text-align: center;">@Item.AssetsInRepair</td>
+                            <td style="text-align: center;">@Item.ServiceInExpire</td>
+                            <td style="text-align: center;">@Item.AssetsInSold</td>
+                            <td style="text-align: center;">@Item.AssetsInDead</td>
+                            <td style="text-align: right;">@Item.TotalAssetsCost</td>
+                        </tr>
+                        <tr>
+                            <th data-class="expand" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> SKU / Serial No</th>
+                            <th data-class="expand" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Assign Detail</th>
+                            <th data-hide="phone,tablet" colspan="3" style="width:20%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Purchase Detail</th>
+                            <th data-hide="phone,tablet" colspan="2" style="width:10%;text-align:right;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> D. Price</th>
+                            <th data-hide="phone,tablet" colspan="2" style="width:10%;text-align:right;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> War. Expire</th>
+
+                        </tr>
+                        @foreach (var Item2 in Item.ProductAssignChildList)
+                        {
+                            <tr>
+                                <td>
+                                    <b>@Item2.ProductChildSKU</b><br />
+                                    Sr. No.: @Item2.ManufacturerPartNumber
+                                </td>
+                                <td>
+                                    <b>Branch: @Item2.BranchTitle</b><br />
+                                    Assign To: @Item2.EmployeeName<br />
+                                    Assign Date:   @Item2.AssetsAssignmentDate?.ToString("dd-MM-yyyy")
+
+                                </td>
+                                <td colspan="3">
+                                    <b>Vendor: @Item2.VendorTitle</b>
+                                    <br />Date: @Item2.PurchaseDate?.ToString("dd-MM-yyyy")
+                                    <br />Price: @Item2.PurchasePrice
+                                </td>
+                                <td colspan="2" style="text-align: right;">
+                                    @Item2.DepreciatePrice
+                                </td>
+
+                                <td colspan="2" style="text-align: right;">
+                                    @Item2.WarrantyExpiryDate?.ToString("dd-MM-yyyy")
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+
+
+
+
+    
+</div>
+
+

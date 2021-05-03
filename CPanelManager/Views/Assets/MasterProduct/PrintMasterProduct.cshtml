@@ -1,0 +1,67 @@
+﻿@model CPanelManager.ViewModels.MasterProduct.IndexMasterProductViewModel
+@using CPanelManager.Helpers
+@{
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
+    ViewData["Title"] = "Master Product";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12" style="text-align:center;">
+            <h1 class="page-title txt-color-blueDark">
+                Master Product
+            </h1>
+        </div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-bordered" width="100%">
+                <thead>
+                    <tr>
+                        <th data-class="expand" style="width:35%"> Product Detail</th>
+                        <th data-hide="phone" style="width:35%"> Brand & Category</th>
+                        <th data-hide="phone,tablet" style="width:7%;text-align:center;"> Total</th>
+                        <th data-hide="phone,tablet" style="width:7%;text-align:center;"> Assign</th>
+                        <th data-hide="phone,tablet" style="width:7%;text-align:center;"> Repair</th>
+                        <th data-hide="phone,tablet" style="width:7%;text-align:center;"> Expire</th>
+                        <th data-hide="phone,tablet" style="width:7%;text-align:center;"> Sale</th>
+                        <th data-hide="phone,tablet" style="width:7%;text-align:center;"> Dead</th>
+                        <th data-hide="phone,tablet" style="width:8%;text-align:right;"> Cost</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var Item in Model.MasterProductList)
+                    {
+                        <tr>
+
+                            <td>
+                                <b>@Item.ProductTitle</b>
+                                <br />SKU: @Item.ProductSKU
+                                <br />Model: @Item.ProductModel
+                            </td>
+                            <td>
+                                @Item.BrandTitle
+                                <br /> @Item.CategoryTitle / @Item.SubCategoryTitle
+                            </td>
+                            <td style="text-align: center;">@Item.TotalAssetsInStock</td>
+                            <td style="text-align: center;">@Item.AssetsAssign</td>
+                            <td style="text-align: center;">@Item.AssetsInRepair</td>
+                            <td style="text-align: center;">@Item.ServiceInExpire</td>
+                            <td style="text-align: center;">@Item.AssetsInSold</td>
+                            <td style="text-align: center;">@Item.AssetsInDead</td>
+                            <td style="text-align: right;">@Item.TotalAssetsCost</td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+

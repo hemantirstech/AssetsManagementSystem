@@ -1,0 +1,407 @@
+﻿@model CPanelManager.ViewModels.MasterAssetsAssignment.AddMasterAssetsAssignmentViewModel
+
+@{
+    ViewData["Title"] = "Master Product";
+}
+<style>
+
+    /*ASSIGN aSSETS table Scroll*/
+    table.tableBodyScroll tbody {
+        display: block;
+        max-height: 390px;
+        overflow-y: scroll;
+    }
+
+    table.tableBodyScroll thead,
+    tbody tr.trBodyScroll {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+</style>
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="SearchMasterAssetsAssignment" id="MasterAssetsAssignment-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    Assets Assignment
+                    <span>
+                        >
+                        View
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+
+                <input type="hidden" asp-for="Mode" />
+                <a asp-action="PrintMasterAssetsAssignment" asp-route-MasterEmployeeId="@Model.MasterEmployeeId" class="btn btn-lg btn-labeled btn-default" target="_blank">
+                    <span class="btn-label"><i class="glyphicon glyphicon-print"></i></span>Print
+                </a>
+
+                <a asp-action="Index" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+            </div>
+        </div>
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Company Detail </h2>
+
+                    </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form" novalidate="novalidate">
+                                    <header>
+                                        Search Product
+                                    </header>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-2">
+                                                <label class="label">Branch</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterBranchId", (SelectList)ViewBag.BranchList, new { @class = "input-sm", id = "MasterBranchId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterBranchId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-2">
+                                                <label class="label">Employee</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterEmployeeId", (SelectList)ViewBag.EmployeeList, new { @class = "input-sm", id = "MasterEmployeeId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterEmployeeId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            @*<section class="col col-2">
+                                                <label class="label">Category</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterCategoryId", (SelectList)ViewBag.CategoryList, new { @class = "input-sm", id = "MasterCategoryId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterCategoryId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-2">
+                                                <label class="label">Sub Category</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterSubCategoryId", (SelectList)ViewBag.SubCategoryList, new { @class = "input-sm", id = "MasterSubCategoryId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterSubCategoryId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-2">
+                                                <label class="label">.</label>
+                                                <button id="btnSearch" name="Search" value="Search" type="submit" class="btn btn-lg col-12 btn-labeled btn-info">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-search"></i></span>Search
+                                                </button>
+                                                
+                                            </section>*@
+
+                                        </div>
+
+                                    </fieldset>
+
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+
+
+            </div>
+            <!-- END ROW -->
+            <!-- widget grid -->
+            <section id="widget-grid" class="">
+
+                <!-- START ROW -->
+                <div class="row">
+
+                    <!-- NEW COL START -->
+                    <article class="col-sm-12 col-md-12 col-lg-6">
+
+                        <!-- Widget ID (each widget will need unique ID)-->
+                        <div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                            @*<header>
+                    <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                    <h2>Company Detail </h2>
+
+                </header>*@
+
+                            <!-- widget div-->
+                            <div>
+
+
+                                <!-- widget edit box -->
+                                <div class="jarviswidget-editbox">
+                                    <!-- This area used as dropdown edit box -->
+
+                                </div>
+                                <!-- end widget edit box -->
+                                <!-- widget content -->
+                                <div class="widget-body no-padding" style="min-height:500px;">
+
+                                    <table id="dt_basic" class="table table-hover" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th data-class="expand" style="width:40%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Product Detail</th>
+                                                <th data-class="phone,tablet" style="width:40%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Brand & Category</th>
+                                                <th data-hide="phone,tablet" style="width:20%;text-align:center;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Act</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var Item in Model.MasterAssetsNotAssignmentList)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <b>@Html.ActionLink(Item.ProductTitle, "ViewMasterProduct", "MasterProduct", new { MasterProductId = Item.MasterProductId }, htmlAttributes: new { id = "loginLink" })</b>
+                                                        <br /><b>@Html.ActionLink(Item.ProductChildSKU, "ViewMasterProductChild", "MasterProduct", new { MasterProductChildId = Item.MasterProductChildId }, htmlAttributes: new { id = "loginLink" })</b>
+                                                        <br />Sr. No.: @Item.ManufacturerPartNumber
+                                                    </td>
+                                                    <td>
+                                                        Brand: @Item.BrandTitle
+                                                        <br /> @Item.CategoryTitle / @Item.SubCategoryTitle
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        @Html.ActionLink(".", "AssignMasterAssetsAssignment", new { MasterEmployeeId = Model.MasterEmployeeId, MasterBranchId = Model.MasterBranchId, MasterProductChildId = Item.MasterProductChildId }, htmlAttributes: new { id = "loginLink", @class = "glyphicon glyphicon-fast-forward", style = "color:blue;font-size:15px;" })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <!-- end widget content -->
+
+                            </div>
+                            <!-- end widget div -->
+
+                        </div>
+                        <!-- end widget -->
+
+                    </article>
+                    <!-- END COL -->
+                    <!-- NEW COL START -->
+                    <article class="col-sm-12 col-md-12 col-lg-6">
+
+                        <!-- Widget ID (each widget will need unique ID)-->
+                        <div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                            @*<header>
+                    <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                    <h2>Company Detail </h2>
+
+                </header>*@
+
+                            <!-- widget div-->
+                            <div>
+
+
+                                <!-- widget edit box -->
+                                <div class="jarviswidget-editbox">
+                                    <!-- This area used as dropdown edit box -->
+
+                                </div>
+                                <!-- end widget edit box -->
+                                <!-- widget content -->
+                                <div class="widget-body no-padding" style="min-height:500px;">
+
+                                    <table id="" class="table table-hover" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th data-class="expand" style="width:40%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Product Detail</th>
+                                                <th data-class="phone,tablet" style="width:40%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Brand & Category</th>
+                                                <th data-hide="phone,tablet" style="width:20%;text-align:center;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Act</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var Item in Model.MasterAssetsAssignmentList)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <b>@Html.ActionLink(Item.ProductTitle, "ViewMasterProduct", "MasterProduct", new { MasterProductId = Item.MasterProductId }, htmlAttributes: new { id = "loginLink" })</b>
+                                                        <br /><b>@Html.ActionLink(Item.ProductChildSKU, "ViewMasterProductChild", "MasterProduct", new { MasterProductChildId = Item.MasterProductChildId }, htmlAttributes: new { id = "loginLink" })</b>
+                                                        <br />Sr. No.: @Item.ManufacturerPartNumber
+                                                    </td>
+                                                    <td>
+                                                        Brand: @Item.BrandTitle
+                                                        <br /> @Item.CategoryTitle / @Item.SubCategoryTitle
+                                                    </td>
+                                                    <td style="text-align:center;">
+                                                        @if(Item.MasterSubCategoryId==13)
+                                                        {
+                                                            @Html.ActionLink(".", "DeAssignMasterAssetsAssignment", new { MasterEmployeeId = Model.MasterEmployeeId, MasterBranchId = Model.MasterBranchId, MasterProductChildId = Item.MasterProductChildId, MasterAssetsAssignmentId = Item.MasterAssetsAssignmentId }, htmlAttributes: new { id = "loginLink", @class = "glyphicon glyphicon-fast-backward", style = "color:red;font-size:15px;", onclick = "return confirm('have you archive this mail box?');" })
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.ActionLink(".", "DeAssignMasterAssetsAssignment", new { MasterEmployeeId = Model.MasterEmployeeId, MasterBranchId = Model.MasterBranchId, MasterProductChildId = Item.MasterProductChildId, MasterAssetsAssignmentId = Item.MasterAssetsAssignmentId }, htmlAttributes: new { id = "loginLink", @class = "glyphicon glyphicon-fast-backward", style = "color:red;font-size:15px;" })
+                                                        }
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <!-- end widget content -->
+
+                            </div>
+                            <!-- end widget div -->
+
+                        </div>
+                        <!-- end widget -->
+
+                    </article>
+                    <!-- END COL -->
+
+
+                </div>
+                <!-- END ROW -->
+
+            </section>
+            <!-- end widget grid -->
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        
+        DropDownFill();
+        
+        $("#MasterCategoryId").change(function () {
+            DropDownFill();
+        })
+
+        $("#MasterBranchId").change(function () {
+            DropDownFill();
+        })
+
+        function DropDownFill() {
+            //Sub Category
+            $("#MasterSubCategoryId").prop('disabled', true);
+            var url = "/Common/AssetsDropDownFill";
+            var _Category = $("#MasterCategoryId").val();
+            var _SubCategory = "@Model.MasterSubCategoryId";
+
+            var data = [];
+            $.getJSON(url, { TableName: "ASMasterSubCategory", MasterId: _Category, Type: 'CID'}, function (data) {
+
+                data = $.parseJSON(data)
+                FillDropdown("MasterSubCategoryId", data)
+
+                if (data.length >= 1) {
+                    $("#MasterSubCategoryId").prop('disabled', false);
+                    $("#MasterSubCategoryId").val(_SubCategory).attr("selected", true);
+                }
+                else {
+                    $("#MasterSubCategoryId").prop('disabled', true);
+                }
+            });
+
+
+            //Employee
+            $("#MasterEmployeeId").prop('disabled', true);
+            var url = "/Common/DropDownFill";
+            var _Branch = $("#MasterBranchId").val();
+            var _Employee = "@Model.MasterEmployeeId";
+
+            var data = [];
+            $.getJSON(url, { TableName: "ADMasterEmployee", MasterId: _Branch, Type: 'BID'}, function (data) {
+
+                data = $.parseJSON(data)
+                FillDropdown("MasterEmployeeId", data)
+
+                if (data.length >= 1) {
+                    $("#MasterEmployeeId").prop('disabled', false);
+                    $("#MasterEmployeeId").val(_Employee).attr("selected", true);
+                }
+                else {
+                    $("#MasterEmployeeId").prop('disabled', true);
+                }
+            });
+           
+        }
+
+        function FillDropdown(selector, json) {
+            if (json.length >= 1) {
+                $('#' + selector).empty();
+                //$('#' + selector).append('<option value=0> -- Select -- </option>');
+                json = json || {};
+
+                for (var i = 0; i < json.length; i++) {
+                    $('#' + selector).append('<option value="' + json[i].MasterId + '">' + json[i].MasterName + '</option>');
+                }
+            }
+            else {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+            }
+
+            
+        }
+
+
+
+
+
+    </script>
+
+    <script src="~/js/Views/MasterProduct/Index.js"></script>
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+

@@ -1,0 +1,6 @@
+2021-04-08T14:56:23.4803039+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-04-08T14:56:23.4991402+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-04-08T14:56:23.5021948+05:30  [INF] Content root path: "E:\Application And Project\AssetsManagementSystem\AssetsWebApi" (b5d60022)
+2021-04-08T15:06:29.7108678+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-04-08T15:06:29.7228490+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-04-08T15:06:29.7253271+05:30  [INF] Content root path: "E:\Application And Project\AssetsManagementSystem\AssetsWebApi" (b5d60022)

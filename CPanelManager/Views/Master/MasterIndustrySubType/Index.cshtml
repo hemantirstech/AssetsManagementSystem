@@ -1,0 +1,150 @@
+﻿@model CPanelManager.ViewModels.MasterIndustrySubType.IndexMasterIndustrySubTypeViewModel
+
+@{
+    ViewData["Title"] = "MasterIndustrySubType/Index";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="DeleteMasterIndustrySubType" id="MasterIndustrySubType-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    Master IndustrySubType
+                    <span>
+                        >
+                        Index
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+                <button id="btndelete" type="submit" class="btn btn-lg btn-labeled btn-danger" onclick="return confirm('Are you sure you wish to delete Master IndustrySubType?');">
+                    <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>Delete
+                </button>
+
+                <a asp-action="AddMasterIndustrySubType" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>Add New
+                </a>
+            </div>
+        </div>
+
+
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        <header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>Master IndustrySubType</h2>
+
+                        </header>
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <table id="dt_basic" class="table table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th data-hide="phone" style="width:5%"><input style="width:100% !important; text-align:center;" type="checkbox" class="checkBoxDelete" id="chkbtnDeleteAll" /> </th>
+                                            <th data-class="expand" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Title</th>
+                                            <th data-hide="phone" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Code</th>
+                                            <th data-class="expand" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i>Industry Type</th>
+                                            <th data-hide="phone" style="width:20%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Description</th>
+                                            <th data-hide="phone" style="width:15%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var Item in Model.MasterIndustrySubTypeList)
+                                        {
+                                        <tr>
+                                            <td style="text-align:center;"><input style="float:inherit;" type="checkbox" id="chkbtnDeleteMasterIndustrySubTypeIds" class="checkBoxDelete" name="DeleteMasterIndustrySubTypeIds" value="@Item.MasterIndustrySubTypeId"> </td>
+
+                                            @if (Model.IsUpdate == true)
+                                            {
+                                                <td>
+                                                    @Html.ActionLink(Item.IndustrySubTypeTitle, "ViewMasterIndustrySubType", new { MasterIndustrySubTypeId = Item.MasterIndustrySubTypeId }, htmlAttributes: new { id = "loginLink" })
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @Html.ActionLink(Item.IndustrySubTypeTitle, "ViewMasterIndustrySubType", new { MasterIndustrySubTypeId = Item.MasterIndustrySubTypeId }, htmlAttributes: new { id = "loginLink" })
+                                                </td>
+                                            }
+                                            <td>@Item.IndustrySubTypeCode</td>
+                                            <td>@Item.MasterIndustryTypeId</td>
+                                            <td>@Item.IndustrySubTypeDescription</td>
+
+                                            <td>
+                                                <button id="btndelete">
+                                                    <i class="glyphicon glyphicon-pencil" style="color:blue;"></i>
+                                                </button>
+                                                <button id="btndelete">
+                                                    <i class="glyphicon glyphicon-eye-open" style="color:green;"></i>
+                                                </button>
+                                                <button id="btndelete">
+                                                    <i class="glyphicon glyphicon-trash" style="color:red;"></i>
+                                                </button>
+
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Check Btn On Index View  for Select all check boxs for Delete
+            $("#chkbtnDeleteAll").click(function () {
+                $(".checkBoxDelete").prop('checked', $(this).prop('checked'));
+            });
+        });
+    </script>
+    <script src="~/js/Views/MasterBranch/Index.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

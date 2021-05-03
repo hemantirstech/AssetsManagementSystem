@@ -1,0 +1,16 @@
+2021-01-28T10:26:43.8413327+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-01-28T10:26:43.8528674+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-01-28T10:26:43.8547514+05:30  [INF] Content root path: "D:\Project & Application\CPanelManager\CPanelManager" (b5d60022)
+2021-01-28T10:27:02.9096674+05:30 80000002-0005-ff00-b63f-84710c7967bb [INF] User AMIT KUBADE successfully logged in. (c1be5eb9)
+2021-01-28T11:02:38.0022550+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-01-28T11:02:38.0207965+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-01-28T11:02:38.0247587+05:30  [INF] Content root path: "D:\Project & Application\CPanelManager\CPanelManager" (b5d60022)
+2021-01-28T11:02:44.6639548+05:30 80000003-0006-ff00-b63f-84710c7967bb [INF] User AMIT KUBADE successfully logged in. (c1be5eb9)
+2021-01-28T11:03:38.8958303+05:30 80000009-0000-fe00-b63f-84710c7967bb [ERR] Controler:MasterProduct , Action:IndexDetailMasterProductChild , Exception:Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'CPanelManager.ViewModels.MasterProduct.IndexMasterProductChildViewModel' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1. (e09db9c0)
+2021-01-28T11:08:16.3687920+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-01-28T11:08:16.3839800+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-01-28T11:08:16.3867262+05:30  [INF] Content root path: "D:\Project & Application\CPanelManager\CPanelManager" (b5d60022)
+2021-01-28T11:08:16.5385507+05:30 80000004-0001-ff00-b63f-84710c7967bb [INF] User logged out. (f9c27106)
+2021-01-28T11:08:25.5708079+05:30 80000002-0007-fd00-b63f-84710c7967bb [INF] User AMIT KUBADE successfully logged in. (c1be5eb9)

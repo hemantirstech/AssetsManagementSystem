@@ -1,0 +1,224 @@
+﻿@model CPanelManager.ViewModels.MasterFinancialYear.AddMasterFinancialYearViewModel
+
+@{
+    ViewData["Title"] = "Master FinancialYear";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+    <form asp-action="SaveMasterFinancialYear" id="MasterFinancialYear-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    MasterFinancialYear
+                    <span>
+                        >
+                        Add / View
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+                <input type="hidden" asp-for="MasterFinancialYearId" />
+                <input type="hidden" asp-for="Mode" />
+
+                <a asp-action="Index" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+                <button id="btnsave" type="submit" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>Save / Update
+                </button>
+            </div>
+        </div>
+
+        <div class="alert alert-block alert-success">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
+            <p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </p>
+        </div>
+
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-7">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>GenCode Type </h2>
+
+                           </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form" novalidate="novalidate">
+                                    <header>
+                                        FinancialYear
+                                    </header>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">CashBook</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-tag"></i>
+                                                    <input asp-for="CashBook" placeholder="CashBook" maxlength="100" />
+                                                    <span asp-validation-for="CashBook" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Description </label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-tag"></i>
+                                                    <input asp-for="FinancialYearDescription" placeholder="FinancialYear Description" maxlength="100" />
+                                                    <span asp-validation-for="FinancialYearDescription" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Year Start Date</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar-o"></i>
+                                                    <input asp-for="YearStartDate" placeholder="Year Start Date" maxlength="100" />
+                                                    <span asp-validation-for="YearStartDate" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">YearLocked</label>
+                                                <label class="toggle">
+                                                    <input type="checkbox" id="YearLocked" name="YearLocked" value="true" checked="checked">
+                                                    <i data-swchon-text="True" data-swchoff-text="False"></i>
+                                                </label>
+                                                <span asp-validation-for="YearLocked" class="text-danger"></span>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Year End Date</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar-o"></i>
+                                                    <input asp-for="YearEndDate" placeholder="Year End Date" maxlength="100" />
+                                                    <span asp-validation-for="YearEndDate" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                            
+                                            <section class="col col-6">
+                                                <label class="label">CurrentYear</label>
+                                                <label class="toggle">
+                                                    <input type="checkbox" id="CurrentYear" name="CurrentYear" value="true" checked="checked">
+                                                    <i data-swchon-text="True" data-swchoff-text="False"></i>
+                                                </label>
+                                                <span asp-validation-for="CurrentYear" class="text-danger"></span>
+                                            </section>
+                                        </div>
+
+                                    </fieldset>
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+               
+            </div>
+            <!-- END ROW -->
+
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var IsYearLocked = "@Model.YearLocked";
+        var IsCurrentYear = "@Model.CurrentYear";
+        if (IsSelect == "True") {
+            $('#IsYearLocked').prop('checked', true);
+        }
+        else {
+            $('#IsYearLocked').prop('checked', false);
+        }
+
+        if (IsInsert == "True") {
+            $('#IsCurrentYear').prop('checked', true);
+        }
+        else {
+            $('#IsCurrentYear').prop('checked', false);
+        }
+
+        $('#MasterFinancialYearTitle').change(function () {
+            var url = "/MasterFinancialYear/MasterFinancialYearExists";
+            var _MasterFinancialYearTitle = $('#MasterFinancialYearTitle').val();
+
+            if (_MasterFinancialYearTitle != '') {
+
+                $.getJSON(url, { MasterFinancialYearTitle:_MasterFinancialYearTitle}, function (data) {
+                    alert(data);
+                    if (data == true) {
+                        $("#MasterFinancialYearTitle").css('background-color', '');
+                    }
+                    else {
+                        $("#MasterFinancialYearTitle").css('background-color', '#FFBFBF');
+                        alert('GenCode Type Title Already Exist!');
+                    }
+                });
+            }
+        });
+
+        //$('#MasterFinancialYearPrintDesc').change(function () {
+        //    var url = "/MasterFinancialYear/MasterFinancialYearPrintCodeExists";
+        //    var data = $('#MasterFinancialYearPrintDesc').val();
+
+        //    if (data != '') {
+        //        $.get(url, { TableName: 'CGMasterFinancialYear', NameAvailable: data, NameId: Cid }, function (data) {
+        //            if (data == "Available") {
+        //                $("#MasterFinancialYearPrintDesc").css('background-color', '');
+        //            }
+        //            else {
+        //                $("#MasterFinancialYearPrintDesc").css('background-color', '#FFBFBF');
+        //                alert('Print Description Already Exist!');
+        //            }
+        //        });
+        //    }
+
+        //})
+    </script>
+
+    <script src="~/js/Views/MasterFinancialYear/AddMasterFinancialYear.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

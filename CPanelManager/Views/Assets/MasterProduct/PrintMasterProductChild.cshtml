@@ -1,0 +1,228 @@
+﻿@model CPanelManager.ViewModels.MasterProduct.IndexMasterProductChildViewModel
+@using CPanelManager.Helpers
+@{
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
+    ViewData["Title"] = "Master Product";
+}
+
+
+
+<!-- MAIN CONTENT -->
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12" style="text-align:center;">
+            <h1 class="page-title txt-color-blueDark">
+                Master Product
+            </h1>
+        </div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-bordered" width="100%">
+
+                <tbody>
+                    <tr>
+                        <td colspan="2" style="background-color: lightblue;">
+                            <h1>@Model.ProductTitle</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:50%;background-color: lightblue;font-size:18px;">
+                            Model: @Model.ProductModel
+                            <br />@Model.CategoryTitle / @Model.SubCategoryTitle
+                            <br />Brand: @Model.BrandTitle
+                            <br />SKU: @Model.ProductSKU
+                            <br />Country: @Model.CountryOfOriginTitle
+                        </td>
+                        <td rowspan="2" style="width:50%;">
+                            <table class="table table-bordered" width="100%">
+                                <tr>
+                                    <td data-hide="phone,tablet" style="width:15%;text-align:center;"> Total</td>
+                                    <td data-hide="phone,tablet" style="width:15%;text-align:center;"> Assign</td>
+                                    <td data-hide="phone,tablet" style="width:15%;text-align:center;"> Repair</td>
+                                    <td data-hide="phone,tablet" style="width:15%;text-align:center;"> Expire</td>
+                                    <td data-hide="phone,tablet" style="width:15%;text-align:center;"> Sale</td>
+                                    <td data-hide="phone,tablet" style="width:15%;text-align:center;"> Dead</td>
+                                    <td data-hide="phone,tablet" style="width:15%;text-align:right;"> Cost</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">@Model.TotalAssetsInStock</td>
+                                    <td style="text-align: center;">@Model.AssetsAssign</td>
+                                    <td style="text-align: center;">@Model.AssetsInRepair</td>
+                                    <td style="text-align: center;">@Model.ServiceInExpire</td>
+                                    <td style="text-align: center;">@Model.AssetsInSold</td>
+                                    <td style="text-align: center;">@Model.AssetsInDead</td>
+                                    <td style="text-align: right;">@Model.TotalAssetsCost</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="background-color: lightblue;font-size:35px;">
+                                        In-Stock
+                                    </td>
+                                    <td colspan="3" style="background-color: lightblue;font-size:35px;">
+                                        @{ 
+                                            long TotalAssetsInStock = Model.TotalAssetsInStock;
+                                            long AssetsAssign = Model.AssetsAssign;
+                                            long AssetsInRepair = Model.AssetsInRepair;
+                                            long AssetsInSold = Model.AssetsInSold;
+                                            long AssetsInDead = Model.AssetsInDead;
+
+                                            long InStock = TotalAssetsInStock - (AssetsAssign + AssetsInRepair + AssetsInSold + AssetsInDead);
+                                                                                <span>@InStock</span>
+                                        }
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- this is what the user will see -->
+                            @*<canvas id="pieChart" height="160"></canvas>
+
+                            <div id="chartContainer" style="height:300px; width:100%;"></div>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:60%;background-color: lightblue;font-size:18px;">
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-bordered" width="100%" style="font-size:9px;">
+                <thead>
+                    <tr>
+                        <th data-class="expand" style="width:25%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> SKU / Serial No</th>
+                        <th data-class="expand" style="width:25%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Assign Detail</th>
+                        <th data-hide="phone,tablet" style="width:24%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Purchase Detail</th>
+                        <th data-hide="phone,tablet" style="width:10%;text-align:right;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> D. Price</th>
+                        <th data-hide="phone,tablet" style="width:8%;text-align:right;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> War. Expire</th>
+                        <th data-hide="phone" style="width:8%"> Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var Item in Model.ProductAssignChildList)
+                    {
+                        <tr>
+                            <td>
+                                <b>@Item.ProductChildSKU</b><br />
+                                Sr. No.: @Item.ManufacturerPartNumber
+                            </td>
+                            <td>
+                                <b>Branch: @Item.BranchTitle</b><br />
+                                Assign To: @Item.EmployeeName<br />
+                                Assign Date:   @Item.AssetsAssignmentDate?.ToString("dd-MM-yyyy")
+
+                            </td>
+                            <td>
+                                <b>Vendor: @Item.VendorTitle</b>
+                                <br />Date: @Item.PurchaseDate?.ToString("dd-MM-yyyy")
+                                <br />Price: @Item.PurchasePrice
+                            </td>
+                            <td style="text-align: right;">
+                                @Item.DepreciatePrice
+                            </td>
+
+                            <td style="text-align: right;">
+                                @Item.WarrantyExpiryDate?.ToString("dd-MM-yyyy")
+                            </td>
+
+                            <td style="text-align:center;">
+                                @if (Item.IsActive == true && Item.IsDeadAssets == false && Item.IsSaleProduct == false)
+                                {
+                                    <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                                }
+                                else if (Item.IsActive == false && Item.IsDeadAssets == false && Item.IsSaleProduct == false)
+                                {
+                                    <span class="glyphicon glyphicon-wrench" style="color:orangered">Repair</span>
+                                }
+                                else if (Item.IsDeadAssets == true)
+                                {
+                                    <span class="glyphicon glyphicon-remove" style="color:red">Dead</span>
+                                }
+                                else if (Item.IsSaleProduct == true)
+                                {
+                                    <span class="glyphicon glyphicon-hourglass" style="color:blue">Sold</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="~/js/Canvas/canvasjs.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //var chart = new CanvasJS.Chart("chartContainer", {
+        //    animationEnabled: true,
+        //    title: {
+        //        text: "Total Assets: 10"
+        //    },
+        //    data: [{
+        //        type: "pie",
+        //        startAngle: 240,
+        //        yValueFormatString: "##0\"\"",
+        //        indexLabel: "{label} {y}",
+        //        dataPoints: [
+        //            { y: 5, label: "Assign" },
+        //            { y: 2, label: "Repair" },
+        //            { y: 1, label: "Sale" },
+        //            { y: 1, label: "Dead" },
+        //            { y: 1, label: "Stock" }
+        //        ]
+        //    }]
+        //});
+        //chart.render();
+
+        //// pie chart example
+        //var PieConfig = {
+        //    type: 'pie',
+        //    data: {
+        //        datasets: [{
+        //            data: [
+        //                5,
+        //                0,
+        //                1,
+        //                0,
+        //                1,
+        //            ],
+        //            backgroundColor: [
+        //                "#F7464A",
+        //                "#46BFBD",
+        //                "#FDB45C",
+        //                "#949FB1",
+        //                "#4D5360",
+        //            ],
+        //        }],
+        //        labels: [
+        //            "Assign",
+        //            "Repair",
+        //            "Sale",
+        //            "Dead",
+        //            "Stock"
+        //        ]
+        //    },
+        //    options: {
+        //        responsive: true
+        //    }
+        //};
+
+        //window.onload = function () {
+        //    window.myPie = new Chart(document.getElementById("pieChart"), PieConfig);
+        //};
+
+    })
+
+</script>
+
+

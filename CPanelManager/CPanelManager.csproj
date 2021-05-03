@@ -1,0 +1,220 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>9d799348-aa65-4231-b542-cde2eeab8c0f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Reports\**" />
+    <Content Remove="Reports\**" />
+    <EmbeddedResource Remove="Reports\**" />
+    <None Remove="Reports\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\ErrorViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Master\GenCodeMaster\AddGenCodeMaster.cshtml" />
+    <None Include="Views\Master\GenCodeMaster\Index.cshtml" />
+    <None Include="Views\Master\MasterAddressType\AddMasterAddressType.cshtml" />
+    <None Include="Views\Master\MasterAddressType\Index.cshtml" />
+    <None Include="Views\Master\MasterBankAccountType\AddMasterBankAccountType.cshtml" />
+    <None Include="Views\Master\MasterBankAccountType\Index.cshtml" />
+    <None Include="Views\Master\MasterBusinessVerticle\AddMasterBusinessVerticle.cshtml" />
+    <None Include="Views\Master\MasterBusinessVerticle\Index.cshtml" />
+    <None Include="Views\Master\MasterCity\AddMasterCity.cshtml" />
+    <None Include="Views\Master\MasterCity\Index.cshtml" />
+    <None Include="Views\Master\MasterColor\AddMasterColor.cshtml" />
+    <None Include="Views\Master\MasterColor\Index.cshtml" />
+    <None Include="Views\Master\MasterCompanyType\AddMasterCompanyType.cshtml" />
+    <None Include="Views\Master\MasterCompanyType\Index.cshtml" />
+    <None Include="Views\Master\MasterCountry\AddMasterCountry.cshtml" />
+    <None Include="Views\Master\MasterCountry\Index.cshtml" />
+    <None Include="Views\Master\MasterCurrency\AddMasterCurrency.cshtml" />
+    <None Include="Views\Master\MasterCurrency\Index.cshtml" />
+    <None Include="Views\Master\MasterDepartment\AddMasterDepartment.cshtml" />
+    <None Include="Views\Master\MasterDepartment\Index.cshtml" />
+    <None Include="Views\Master\MasterDesignation\AddMasterDesignation.cshtml" />
+    <None Include="Views\Master\MasterDesignation\Index.cshtml" />
+    <None Include="Views\Master\MasterEmployeeStatus\AddMasterEmployeeStatus.cshtml" />
+    <None Include="Views\Master\MasterEmployeeStatus\Index.cshtml" />
+    <None Include="Views\Master\MasterEmployeeType\AddMasterEmployeeType.cshtml" />
+    <None Include="Views\Master\MasterEmployeeType\Index.cshtml" />
+    <None Include="Views\Master\MasterFinancialYear\AddMasterFinancialYear.cshtml" />
+    <None Include="Views\Master\MasterFinancialYear\Index.cshtml" />
+    <None Include="Views\Master\MasterGender\AddMasterGender.cshtml" />
+    <None Include="Views\Master\MasterGender\Index.cshtml" />
+    <None Include="Views\Master\MasterIndustryGroup\AddMasterIndustryGroup.cshtml" />
+    <None Include="Views\Master\MasterIndustryGroup\Index.cshtml" />
+    <None Include="Views\Master\MasterIndustrySubType\AddMasterIndustrySubType.cshtml" />
+    <None Include="Views\Master\MasterIndustrySubType\Index.cshtml" />
+    <None Include="Views\Master\MasterIndustryType\AddMasterIndustryType.cshtml" />
+    <None Include="Views\Master\MasterIndustryType\Index.cshtml" />
+    <None Include="Views\Master\MasterLoginType\AddMasterLoginType.cshtml" />
+    <None Include="Views\Master\MasterLoginType\Index.cshtml" />
+    <None Include="Views\Master\MasterMessageType\AddMasterMessageType.cshtml" />
+    <None Include="Views\Master\MasterMessageType\Index.cshtml" />
+    <None Include="Views\Master\MasterPaymentType\AddMasterPaymentType.cshtml" />
+    <None Include="Views\Master\MasterPaymentType\Index.cshtml" />
+    <None Include="Views\Master\MasterRegion\AddMasterRegion.cshtml" />
+    <None Include="Views\Master\MasterRegion\Index.cshtml" />
+    <None Include="Views\Master\MasterRegistrationType\AddMasterRegistrationType.cshtml" />
+    <None Include="Views\Master\MasterRegistrationType\Index.cshtml" />
+    <None Include="Views\Master\MasterReportingHead\AddMasterReportingHead.cshtml" />
+    <None Include="Views\Master\MasterReportingHead\Index.cshtml" />
+    <None Include="Views\Master\MasterState\AddMasterState.cshtml" />
+    <None Include="Views\Master\MasterState\Index.cshtml" />
+    <None Include="Views\Master\MasterStatus\AddMasterStatus.cshtml" />
+    <None Include="Views\Master\MasterStatus\Index.cshtml" />
+    <None Include="Views\Master\MasterTimeZone\AddMasterTimeZone.cshtml" />
+    <None Include="Views\Master\MasterTimeZone\Index.cshtml" />
+    <None Include="Views\Master\MasterTypeOfDevice\AddMasterTypeOfDevice.cshtml" />
+    <None Include="Views\Master\MasterTypeOfDevice\Index.cshtml" />
+    <None Include="Views\Master\MessageNotification\AddMessageNotification.cshtml" />
+    <None Include="Views\Master\MessageNotification\Index.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="wwwroot\js\Canvas\canvasjs.min.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\Views\GenCodeMaster\AddGenCodeMaster.js" />
+    <None Include="wwwroot\js\Views\GenCodeMaster\Index.js" />
+    <None Include="wwwroot\js\Views\MasterAddressType\AddMasterAddressType.js" />
+    <None Include="wwwroot\js\Views\MasterAddressType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterBankAccountType\AddMasterBankAccountType.js" />
+    <None Include="wwwroot\js\Views\MasterBankAccountType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterBusinessVerticle\AddMasterBusinessVerticle.js" />
+    <None Include="wwwroot\js\Views\MasterBusinessVerticle\Index.js" />
+    <None Include="wwwroot\js\Views\MasterCity\AddMasterCity.js" />
+    <None Include="wwwroot\js\Views\MasterCity\Index.js" />
+    <None Include="wwwroot\js\Views\MasterColor\AddMasterColor.js" />
+    <None Include="wwwroot\js\Views\MasterColor\Index.js" />
+    <None Include="wwwroot\js\Views\MasterCompanyType\AddMasterCompanyType.js" />
+    <None Include="wwwroot\js\Views\MasterCompanyType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterCountry\AddMasterCountry.js" />
+    <None Include="wwwroot\js\Views\MasterCountry\Index.js" />
+    <None Include="wwwroot\js\Views\MasterCurrency\AddMasterCurrency.js" />
+    <None Include="wwwroot\js\Views\MasterCurrency\Index.js" />
+    <None Include="wwwroot\js\Views\MasterEmployeeStatus\AddMasterEmployeeStatus.js" />
+    <None Include="wwwroot\js\Views\MasterEmployeeStatus\Index.js" />
+    <None Include="wwwroot\js\Views\MasterEmployeeType\AddMasterEmployeeType.js" />
+    <None Include="wwwroot\js\Views\MasterEmployeeType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterFinancialYear\AddMasterFinancialYear.js" />
+    <None Include="wwwroot\js\Views\MasterFinancialYear\Index.js" />
+    <None Include="wwwroot\js\Views\MasterGender\AddMasterGender.js" />
+    <None Include="wwwroot\js\Views\MasterGender\Index.js" />
+    <None Include="wwwroot\js\Views\MasterIndustryGroup\AddMasterIndustryGroup.js" />
+    <None Include="wwwroot\js\Views\MasterIndustryGroup\Index.js" />
+    <None Include="wwwroot\js\Views\MasterIndustrySubType\AddMasterIndustrySubType.js" />
+    <None Include="wwwroot\js\Views\MasterIndustrySubType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterIndustryType\AddMasterIndustryType.js" />
+    <None Include="wwwroot\js\Views\MasterIndustryType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterMessageType\AddMasterMessageType.js" />
+    <None Include="wwwroot\js\Views\MasterMessageType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterPaymentType\AddMasterPaymentType.js" />
+    <None Include="wwwroot\js\Views\MasterPaymentType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterRegion\AddMasterRegion.js" />
+    <None Include="wwwroot\js\Views\MasterRegion\Index.js" />
+    <None Include="wwwroot\js\Views\MasterRegistrationType\AddMasterRegistrationType.js" />
+    <None Include="wwwroot\js\Views\MasterRegistrationType\Index.js" />
+    <None Include="wwwroot\js\Views\MasterReportingHead\AddMasterReportingHead.js" />
+    <None Include="wwwroot\js\Views\MasterReportingHead\Index.js" />
+    <None Include="wwwroot\js\Views\MasterState\AddMasterState.js" />
+    <None Include="wwwroot\js\Views\MasterState\Index.js" />
+    <None Include="wwwroot\js\Views\MasterStatus\AddMasterStatus.js" />
+    <None Include="wwwroot\js\Views\MasterStatus\Index.js" />
+    <None Include="wwwroot\js\Views\MasterTax\AddMasterTax.js" />
+    <None Include="wwwroot\js\Views\MasterTax\Index.js" />
+    <None Include="wwwroot\js\Views\MasterTimeZone\AddMasterTimeZone.js" />
+    <None Include="wwwroot\js\Views\MasterTimeZone\Index.js" />
+    <None Include="wwwroot\js\Views\MasterTypeOfDevice\AddMasterTypeOfDevice.js" />
+    <None Include="wwwroot\js\Views\MasterTypeOfDevice\Index.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Html5EditorFor" Version="1.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="NETCore.MailKit" Version="2.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.2.0-beta" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+    <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Net.Http.Formatting.Extension" Version="5.2.3" />
+    <PackageReference Include="System.Security.Claims" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\app-files\" />
+    <Folder Include="wwwroot\img\realestate\thumbs\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Administrator\ProfileTaskMappings\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

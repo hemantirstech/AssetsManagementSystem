@@ -1,0 +1,117 @@
+﻿@using CPanelManager.Helpers
+@using Microsoft.AspNetCore.Http;
+@using CPanelManager.ViewModels.Account;
+@using CPanelManager.ViewModels;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@{
+    GlobalMessageViewModel GlobalMessage = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<GlobalMessageViewModel>("GlobalMessage");
+
+    HttpContextAccessor.HttpContext.Session.SetObjectAsJson("GlobalMessage",new GlobalMessageViewModel());
+
+    //It should from Model class but for temperarly from controler namespaces
+    //CPanelManager.ViewModels.GlobalMessageViewModel GlobalMessage = (CPanelManager.ViewModels.GlobalMessageViewModel)TempData["GlobalMessage"];
+}
+
+@if (GlobalMessage != null)
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var MsgMode = parseInt(@GlobalMessage.GlobalMessageType);
+
+            var MsgColor = parseInt(@GlobalMessage.GlobalMessageColor);
+            var SetColor = "";
+
+            var MsgIcon = parseInt(@GlobalMessage.GlobalMessageIcon);
+            var SetIcon = "";
+
+            var MsgSize = parseInt(MsgMode);
+            var SetSize = "";
+
+            //Color
+            switch (MsgColor) {
+                case 1:
+                    SetColor = "#C46A69";//Red
+                    break;
+                case 2:
+                    SetColor = "#3276B1" // Blue
+                    break;
+                case 3:
+                    SetColor = "#C79121" // Yellow
+                    break;
+                case 4:
+                    SetColor = "#296191" // Green
+                    break;
+            }
+
+            //Icon
+            switch (MsgIcon) {
+                case 1:
+                    SetIcon = "fa fa-warning shake animated";
+                    break;
+                case 2:
+                    SetIcon = "fa fa-bell swing animated"
+                    break;
+                case 3:
+                    SetIcon = "fa fa-shield fadeInLeft animated"
+                    break;
+                case 4:
+                    SetIcon = "fa fa-check shake animated" // Green"fa fa-thumbs-up bounce animated"
+                    break;
+                case 5:
+                    SetIcon = "fa fa-thumbs-up bounce animated" // Green
+                    break;
+                case 6:
+                    SetIcon = "fa fa-trash-o shake animated";
+                    break;
+            }
+
+
+            if (MsgMode == 0)
+            {
+            }
+            else if (MsgMode == 1)
+            {
+                $.bigBox({
+                    title: "@GlobalMessage.GlobalMessageTitle",
+                    content: "@GlobalMessage.GlobalMessageText" + "<br />" + "@GlobalMessage.GlobalMessageTextI",
+                    color: SetColor,
+                    icon: SetIcon,
+                    timeout: 8000
+                });
+
+                e.preventDefault();
+            }
+            else if (MsgMode == 2)
+            {
+                $.smallBox({
+                    title: "@GlobalMessage.GlobalMessageTitle",
+                    content: "@GlobalMessage.GlobalMessageText" ,
+                    color: SetColor,
+                    icon: SetIcon,
+                    number: "1",
+                    timeout: 8000
+                });
+
+                e.preventDefault();
+            }
+            else if (MsgMode == 3)
+            {
+                $.smallBox({
+                    title: "@GlobalMessage.GlobalMessageTitle",
+                    content: "@GlobalMessage.GlobalMessageText",
+                    color: SetColor,
+                    iconSmall: SetIcon,
+                    timeout: 8000
+                });
+
+                e.preventDefault();
+            }
+        })
+
+    </script>
+}
+
+
+

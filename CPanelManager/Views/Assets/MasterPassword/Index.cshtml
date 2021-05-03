@@ -1,0 +1,149 @@
+﻿@model CPanelManager.ViewModels.MasterPassword.IndexMasterProductChildViewModel
+
+@{
+    ViewData["Title"] = "MasterProduct/Index";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="UpdateMasterChildProduct" id="MasterProductChild-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    <b>List Of Password</b>
+                <span>
+                    >
+                    Index
+                </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6" style="text-align:right;padding-top:10px;">
+                <input type="hidden" asp-for="MasterProductId" />
+                
+                
+            </div>
+        </div>
+
+       
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <table id="dt_basic" class="table table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+
+                                            <th data-class="expand" style="width:30%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> SKU / Serial No</th>
+                                            <th data-class="expand" style="width:25%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Assign Detail</th>
+                                            <th data-hide="phone,tablet" style="width:20%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> URL & UserName</th>
+                                            <th data-hide="phone,tablet" style="width:15%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Password</th>
+                                            <th data-hide="phone,tablet" style="width:10%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Show</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var Item in Model.ProductAssignChildList)
+                                        {
+                                        <tr>
+                                                                                       
+                                            <td>
+                                                @if (Item.IsDeadAssets == false && Item.IsSaleProduct == false)
+                                                {
+                                                    <b>@Html.ActionLink(Item.ProductChildSKU, "ViewMasterProductChild", new { MasterProductChildId = Item.MasterProductChildId }, htmlAttributes: new { id = "loginLink" })</b><br />
+                                                }
+                                                else
+                                                {
+                                                    <b>@Item.ProductChildSKU</b><br />
+                                                }
+                                                Sr. No.: @Item.ManufacturerPartNumber
+                                            </td>
+                                            <td>
+                                                <b>Branch: @Item.BranchTitle</b><br />
+                                                Assign To: @Item.EmployeeName<br />
+                                                Assign Date:   @Item.AssetsAssignmentDate?.ToString("dd-MM-yyyy")
+
+                                            </td>
+                                            <td>
+                                                @if (@Item.ServiceURL != "" && @Item.ServiceURL != null)
+                                                {
+                                                    @Item.ServiceURL<br />
+                                                }
+                                                Username: @Item.ServiceUserName
+
+                                            </td>
+
+                                            <td>
+                                                @*@Item.ServicePassword*@
+                                                <input type="password" style="border:none ; background:none"  readonly="readonly" value="@Item.ServicePassword" id="PasswordID_@Item.MasterProductChildId" placeholder="Password" maxlength="100" />
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-default reveal" style="border:none; background:none" type="button" onclick="ShowPassword('PasswordID_@Item.MasterProductChildId')"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+
+<script type="text/javascript">
+
+    function ShowPassword(PasswordId) {
+        
+        var x = document.getElementById(PasswordId);
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+    <script src="~/js/Views/MasterProduct/Index.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

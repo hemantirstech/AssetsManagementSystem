@@ -1,0 +1,598 @@
+﻿@model CPanelManager.ViewModels.MasterCompany.AddMasterCompanyViewModel
+
+@{
+    ViewData["Title"] = "Master Company";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="SaveMasterCompany" id="MasterCompany-form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    Master Company
+                    <span>
+                        >
+                        View
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+
+                <input type="hidden" asp-for="MasterCompanyId" />
+                <input type="hidden" asp-for="Mode" />
+                <input type="hidden" asp-for="MasterAddressTypeId" />
+
+                <a asp-action="Index" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+                <button id="btnsave" type="submit" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>Save / Update
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="well">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <h1 class="semi-bold">Licence Agreement </h1>
+                    <p>
+                        Licence Agrement is basic setting for running application as per subscription.
+                        Which maintain information related to company basic detail, sms and mail setting, company logo and other company registration detail.
+                        A subscription-based pricing model is a payment structure that allows a customer or organization to purchase or subscribe to a vendor's IT services for a specific period of time for a set price.
+                        Subscribers typically commit to the services on a monthly or annual basis.
+                    </p>
+
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <div class="alert alert-block alert-success">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
+            <p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </p>
+        </div>
+
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-7">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>Company Detail </h2>
+
+                        </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form" novalidate="novalidate">
+                                    <header>
+                                        Company Detail
+                                    </header>
+
+                                    <fieldset>
+
+                                        <section>
+                                            <label class="label">Company</label>
+                                            <label class="input">
+                                                
+                                                <i class="icon-prepend fa fa-briefcase"></i>
+                                                <input asp-for="CompanyTitle" placeholder="Company" maxlength="200" oninput="this.value = this.value.toUpperCase()" />
+                                                <span asp-validation-for="CompanyTitle" class="text-danger"></span>
+                                            </label>
+                                        </section>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Contact Person</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-user"></i>
+                                                    <input asp-for="ContactPerson" Company="Contact Person" maxlength="100" />
+                                                    <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Designation</label>
+                                                <label class="select">
+
+                                                    @Html.DropDownList("MasterDesignationId", (SelectList)ViewBag.DesignationList, new { @class = "input-sm", id = "MasterDesignationId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterDesignationId" class="text-danger"></span>
+
+                                                </label>
+
+                                                <div class="note">
+                                                    <strong>Designation</strong> of a contact person.
+                                                </div>
+                                            </section>
+                                        </div>
+
+                                    </fieldset>
+
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+                                               
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form">
+                                    <header>
+                                        Communication Detail
+                                    </header>
+
+                                    <fieldset>
+
+                                        @*<section>
+                                            <label class="label">Address Type</label>
+                                            <label class="toggle">
+                                                <input type="checkbox" id="MasterAddressTypeId" name="MasterAddressTypeId" value="1" checked="checked">
+                                                <i data-swchon-text="Official" data-swchoff-text="Residential"></i>
+                                            </label>                                                
+                                            <span asp-validation-for="MasterAddressTypeId" class="text-danger"></span>
+                                        </section>*@
+                                        <section>
+                                            <label class="label">Address I</label>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input asp-for="Address1" placeholder="Address I" maxlength="150" />
+                                                <span asp-validation-for="Address1" class="text-danger"></span>
+                                            </label>
+                                        </section>
+                                        <section>
+                                            <label class="label">Address II</label>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-map-marker"></i>
+                                                <input asp-for="Address2" placeholder="Address II" maxlength="150" />
+                                                <span asp-validation-for="Address2" class="text-danger"></span>
+                                            </label>
+                                        </section>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Country</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterCountryId", (SelectList)ViewBag.CountryList, new { @class = "input-sm", id = "MasterCountryId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterCountryId" class="text-danger"></span>
+                                                   
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">State</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterStateId", (SelectList)ViewBag.StateList, new { @class = "input-sm", id = "MasterStateId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterStateId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">City</label>
+                                                <label class="input">                                                    
+                                                    <input asp-for="City" placeholder="City" maxlength="100" autocomplete="off" />
+                                                    <span asp-validation-for="City" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Pincode</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-pinterest-square"></i>
+                                                    <input asp-for="PinCode" placeholder="Pincode" maxlength="6" onkeypress="javascript: return isIntegerNumberKey(event)"/>
+                                                    <span asp-validation-for="PinCode" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Phone Number</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-phone"></i>
+                                                    <input asp-for="PhoneNumber" placeholder="Phone Number" maxlength="10" onkeypress="javascript: return isIntegerNumberKey(event)"/>
+                                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Mobile Number</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-mobile-phone"></i>
+                                                    <input asp-for="MobileNumber" placeholder="Mobile Number" maxlength="10" onkeypress="javascript: return isIntegerNumberKey(event)"/>
+                                                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Email</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-envelope-o"></i>
+                                                    <input asp-for="Email" placeholder="Email" maxlength="150" />
+                                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Company URL</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-globe"></i>
+                                                    <input asp-for="URL" placeholder="Company URL" maxlength="150" />
+                                                    <span asp-validation-for="URL" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                </article>
+                <!-- END COL -->
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-5">
+
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                <h2>Registration Detail </h2>
+            </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form">
+                                    <header>
+                                        Registration Detail
+                                    </header>
+
+                                    <fieldset>
+
+                                        <section>
+                                            <label class="label">Company Type</label>
+                                            <label class="select">
+                                                @Html.DropDownList("MasterCompanyTypeId", (SelectList)ViewBag.CompanyTypeList, new { @class = "input-sm", id = "MasterCompanyTypeId" })
+                                                <i></i>
+                                                <span asp-validation-for="MasterCompanyTypeId" class="text-danger"></span>
+
+                                            </label>
+                                        </section>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Registration Number</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-registered"></i>
+                                                    <input asp-for="RegistrationNumber" placeholder="Registration Number" maxlength="20" oninput="this.value = this.value.toUpperCase()"/>
+                                                    <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Registration Date</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar-o"></i>
+                                                    <input asp-for="DateofRegistration" placeholder="Registration Date" maxlength="150"/>
+                                                    <span asp-validation-for="DateofRegistration" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">PAN Number</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-credit-card"></i>
+                                                    <input asp-for="PANNumber" placeholder="PAN Number" maxlength="10" oninput="this.value = this.value.toUpperCase()"/>
+                                                    <span asp-validation-for="PANNumber" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">GST No.</label>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-github-square"></i>
+                                                    <input asp-for="GSTNumber" placeholder="GST No." maxlength="25" oninput="this.value = this.value.toUpperCase()" />
+                                                    <span asp-validation-for="GSTNumber" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <lable class="label">Currency</lable>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterCurrencyId", (SelectList)ViewBag.CurrencyList, new { @class = "input-sm", id = "MasterCurrencyId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterCurrencyId" class="text-danger"></span>
+
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <lable class="label">Time-Zone</lable>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterTimeZoneId", (SelectList)ViewBag.TimeZoneList, new { @class = "input-sm", id = "MasterTimeZoneId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterTimeZoneId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+                                        </div>
+
+                                    </fieldset>
+
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-4" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form">
+                                    <header>
+                                        Company Logo
+                                    </header>
+
+                                    <fieldset>
+
+                                        <div class="row">
+                                            <section class="col col-12">
+                                                <label class="ImagePreviewBox">
+                                                    <img height="100px" width="400px" id="imgCompanyLogo" src="~/img/app-images/@Model.CompanyLogo" />
+                                                    <input type="hidden" name="CompanyLogo" value="@Model.CompanyLogo" />
+                                                </label>
+                                                <div class="input input-file">
+                                                    <span class="button">
+                                                        <input type="file" name="_CompanyLogo" id="fileLogo" accept="image/gif, image/jpeg, image/png" onchange="loadFile(event)">Browse
+                                                    </span>
+                                                    @*<input type="text" placeholder="Select Company Logo.." id="CompanyLogo" name="CompanyLogo" readonly="readonly" value="@Model.CompanyLogo">*@
+                                                    <span asp-validation-for="CompanyLogo" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="note">
+                                                    <strong>Company Logo</strong> Width: 500px & Height:100px
+                                                </div>
+                                            </section>
+
+
+                                        </div>
+
+
+                                    </fieldset>
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+
+
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+    
+    <script type="text/javascript">
+
+        @*var MasterAddressTypeId = "@Model.MasterAddressTypeId";
+       
+        if (MasterAddressTypeId == "1") {
+            $('#MasterAddressTypeId').prop('checked', true);
+        }
+        else {
+            $('#MasterAddressTypeId').prop('checked', false);
+        }*@
+
+        var loadFile = function (event) {
+            var output = document.getElementById('imgCompanyLogo')
+            output.src = URL.createObjectURL(event.target.files[0]);
+            $("#CompanyLogo").val($("#file").val().split('\\').pop().split('/').pop());
+        };
+
+        DropDownFill();
+
+        $("#MasterCountryId").change(function () {
+            DropDownFill();
+        })
+
+        function DropDownFill() {
+
+            $("#MasterStateId").prop('disabled', true);
+            var url = "/Common/DropDownFill";
+            var _Country = $("#MasterCountryId").val();
+            var _State = "@Model.MasterStateId";
+           
+            var data = [];
+            $.getJSON(url, { TableName: "ADMasterState", MasterId: _Country, Type: 'ID'}, function (data) {
+               
+                data = $.parseJSON(data)
+                FillDropdown("MasterStateId", data)
+                
+                if (data.length >= 1) {
+                    $("#MasterStateId").prop('disabled', false);
+                    $("#MasterStateId").val(_State).attr("selected", true);
+                }
+                else {
+                    $("#MasterStateId").prop('disabled', true);
+                }
+            });
+
+        }
+
+        function FillDropdown(selector, json) {
+            if (json.length >= 1) {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+                json = json || {};
+                
+                for (var i = 0; i < json.length; i++) {
+                    $('#' + selector).append('<option value="' + json[i].MasterId + '">' + json[i].MasterName + '</option>');
+                }
+            }
+            else {
+                $('#' + selector).empty();
+                $('#' + selector).append('<option value=0> -- Select -- </option>');
+            }
+        }
+
+
+        $(document).ready(function () {          
+
+            $("#City").autocomplete({
+
+                source: function (request, response) {
+
+                    var MastCode = $("#City").val();
+                    //alert(MastCode);
+                    
+                    $.ajax({
+                        url: "/Common/DropDownFill",
+                        type: "POST",
+                        dataType: "json",
+                        data: { TableName: "ADMasterCityAuto", MasterId: 0, Type: MastCode },
+                        success: function (data) {
+                            data = $.parseJSON(data);
+                            response($.map(data, function (item) {
+                                return { label: item.MasterName, value: item.MasterName };
+                            }))
+                        }
+                    })
+
+                },
+                messages: {
+                    noResults: "", results: ""
+                },
+                minLength: 0,
+                select: function (event, ui) {
+                    //alert(ui.item.value);
+                    $("#City").val(ui.item.value);
+                }
+            });            
+        });
+
+        
+    </script>
+
+
+    <script src="~/js/Views/MasterCompany/AddMasterCompany.js"></script>
+
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+

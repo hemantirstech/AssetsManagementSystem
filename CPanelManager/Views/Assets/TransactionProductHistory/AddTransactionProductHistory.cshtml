@@ -1,0 +1,294 @@
+﻿@model CPanelManager.ViewModels.TransactionProductHistory.AddTransactionProductHistoryViewModel
+
+@{
+    ViewData["Title"] = "Transaction Product History";
+}
+
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+    <form asp-action="SaveTransactionProductHistory" id="TransactionProductHistory-form" novalidate="novalidate" method="post" encSize="multipart/form-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-edit fa-fw "></i>
+                    Master Brand
+                    <span>
+                        >
+                        View
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="text-align:right;padding-top:10px;">
+
+                <input type="hidden" asp-for="TransactionProductHistoryId" />
+                <input type="hidden" asp-for="Mode" />
+
+                <a asp-action="Index" class="btn btn-lg btn-labeled btn-danger">
+                    <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel
+                </a>
+
+                <button id="btnsave" Size="submit" class="btn btn-lg btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>Save / Update
+                </button>
+            </div>
+        </div>
+
+
+        <div class="alert alert-block alert-success">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
+            <p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </p>
+        </div>
+
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+
+            <!-- START ROW -->
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-7">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                                <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                                <h2>Company Detail </h2>
+
+                            </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <div class="smart-form" novalidate="novalidate">
+                                    <header>
+                                         Product History
+                                    </header>
+
+                                    <fieldset>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Master Product Child Id</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterProductChildId", (SelectList)ViewBag.BranchList, new { @class = "input-sm", id = "MasterProductChildId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterProductChildId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            @*<section class="col col-6">
+                                                <label class="label">ASMaster Product Child</label>
+                                                <label class="input">
+                                                    <input asp-for="ASMasterProductChild" placeholder="ASMaster Product Child" maxlength="100" oninput="this.value = this.value.toUpperCase()" />
+                                                </label>
+                                                <span asp-validation-for="ASMasterProductChild" class="text-danger"></span>
+                                            </section>*@
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">Master Subscription TypeId</label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterSubscriptionTypeId", (SelectList)ViewBag.BranchList, new { @class = "input-sm", id = "MasterSubscriptionTypeId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterSubscriptionTypeId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">Subscription Price</label>
+                                                <label class="input">
+                                                    <input asp-for="SubscriptionPrice" placeholder="Subscription Price" maxlength="100" />
+                                                </label>
+                                                <span asp-validation-for="SubscriptionPrice" class="text-danger"></span>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">MasterSubscriptionVendorId </label>
+                                                <label class="select">
+                                                    @Html.DropDownList("MasterSubscriptionVendorId", (SelectList)ViewBag.BranchList, new { @class = "input-sm", id = "MasterSubscriptionVendorId" })
+                                                    <i></i>
+                                                    <span asp-validation-for="MasterProductChildId" class="text-danger"></span>
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">SubscriptionDate</label>
+                                                <label class="input">
+                                                    <input asp-for="SubscriptionDate" placeholder="SubscriptionDate" maxlength="100" />
+
+                                                </label>
+                                                <span asp-validation-for="SubscriptionDate" class="text-danger"></span>
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">SubscriptionStartDate</label>
+                                                <label class="input">
+                                                    <input asp-for="SubscriptionStartDate" placeholder="SubscriptionStartDate" maxlength="100" />
+
+                                                </label>
+                                                <span asp-validation-for="SubscriptionStartDate" class="text-danger"></span>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">SubscriptionExpiryDate</label>
+                                                <label class="input">
+                                                    <input asp-for="SubscriptionExpiryDate" placeholder="SubscriptionExpiryDate" maxlength="100" />
+
+                                                </label>
+                                                <span asp-validation-for="SubscriptionExpiryDate" class="text-danger"></span>
+                                            </section>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="label">UploadInvoice </label>
+                                                <input type="file" name="UploadInvoice" required />
+                                                <span asp-validation-for="UploadInvoice" class="text-danger"></span>
+
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="label">UploadDocument </label>
+                                                <input type="file" name="UploadDocument" required />
+                                                <span asp-validation-for="UploadDocument" class="text-danger"></span>
+
+                                            </section>
+                                        </div>
+
+                                        <div class="row">
+                                            
+
+                                            <section class="col col-6">
+                                                <label class="label">UploadWarretyCard </label>
+                                                <input type="file" name="UploadWarretyCard" required />
+                                                <span asp-validation-for="UploadWarretyCard" class="text-danger"></span>
+
+                                            </section>
+                                        </div>
+
+                                    </fieldset>
+
+
+                                </div>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <!-- end widget -->
+                </article>
+                <!-- END COL -->
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-5">
+
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-collapsed="false" data-widget-togglebutton="false" data-widget-sortable="false">
+
+                        @*<header>
+                                <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                                <h2>Registration Detail </h2>
+                            </header>*@
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <div class="well">
+                                        <button class="close" data-dismiss="alert">
+                                            ×
+                                        </button>
+                                        <h1 class="semi-bold">Product History </h1>
+                                        <p>
+                                            Licence Agrement is basic setting for running application as per subscription.
+                                            Which maintain information related to company basic detail, sms and mail setting, company logo and other company registration detail.
+                                            A subscription-based pricing model is a payment structure that allows a customer or organization to purchase or subscribe to a vendor's IT services for a specific period of time for a set price.
+                                            Subscribers typically commit to the services on a monthly or annual basis.
+                                        </p>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+
+                </article>
+                <!-- END COL -->
+
+            </div>
+            <!-- END ROW -->
+
+
+        </section>
+        <!-- end widget grid -->
+    </form>
+</div>
+
+@section Scripts {
+
+    <script Size="text/javascript">
+
+        var IsActive = "@Model.IsActive";
+
+        if (IsActive == "True") {
+            $('#IsActive').prop('checked', true);
+        }
+        else {
+            $('#IsActive').prop('checked', false);
+        }
+
+    </script>
+
+
+    <script src="~/js/Views/TransactionProductHistory/AddTransactionProductHistory.js"></script>
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

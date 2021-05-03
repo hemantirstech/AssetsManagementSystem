@@ -1,0 +1,86 @@
+﻿@model CPanelManager.ViewModels.AssetsExpiry.IndexAssetsExpiryViewModel
+@using CPanelManager.Helpers
+@{
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
+    ViewData["Title"] = "Expired Assets";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12" style="text-align:center;">
+            @if (Model.MasterCategoryType == 2)
+            {
+                <h1 class="page-title txt-color-blueDark">
+                    Expired Service
+                </h1>
+            }
+            else
+            {
+                <h1 class="page-title txt-color-blueDark">
+                    Expired Assets
+                </h1>
+            }
+        </div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-bordered" width="100%" style="font-size:9px;">
+                <thead>
+                    <tr>
+                        <th data-hide="phone,tablet" style="width:10%"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i> Expiry</th>
+                        <th data-class="expand" style="width:25%"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Product Detail</th>
+                        <th data-hide="phone" style="width:20%"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Brand & Category</th>
+                        <th data-hide="phone,tablet" style="width:25%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Assign Detail</th>
+                        <th data-hide="phone,tablet" style="width:20%;"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Purchase Detail</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var Item in Model.AssetsExpiryViewModelList)
+                    {
+                        <tr>
+                            <td style="text-align: right;">
+
+                                @Item.WarrantyExpiryDate?.ToString("dd-MM-yyyy")
+                            </td>
+                            <td>
+                                <b>@Item.ProductChildTitle</b>
+                                <br />SKU: @Item.ProductChildSKU
+                                <br />Sr. No.: @Item.ManufacturerPartNumber
+                            </td>
+                            <td>
+                                @Item.BrandTitle
+                                <br /> @Item.CategoryTitle / @Item.SubCategoryTitle
+                            </td>
+                            <td>
+                                <b>Branch: @Item.BranchTitle</b><br />
+                                Assign To: @Item.EmployeeName<br />
+                                Assign Date:   @Item.AssetsAssignmentDate?.ToString("dd-MM-yyyy")
+
+                            </td>
+                            <td>
+                                <b>Vendor: @Item.VendorTitle</b>
+                                <br />Date: @Item.PurchaseDate?.ToString("dd-MM-yyyy")
+                                <br />Price: @Item.PurchasePrice
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+﻿<ul id="NotificationContent" class="notification-body">
+   
+</ul>
+
+
+<script type="text/javascript">
+    
+    FillNotification();
+
+    function FillNotification() {
+        
+        var url = "/Common/AssetsDropDownFill";
+        var data = [];
+        $.getJSON(url, { TableName: "ASNotification", MasterId: 0, Type: 'EXP' }, function (data) {
+            data = $.parseJSON(data);
+            if (data.length >= 1) {
+                
+                for (var i = 0; i < data.length; i++) {
+                    //alert('Hi');
+
+                    $('#NotificationContent').append("<li>"
+                        + "<span style='margin - left: -45px'>" 
+                        + "<a href=''>"
+                       
+                        + "<em class='badge padding - 2 border - radius 25px bg - color - red pull - left margin - right - 5'>"
+                        //+ "<i class='fa fa-envelope fa-fw fa-2x' ></i >"
+                        + "</em >"
+                       
+                        //+ "<time>" + json[i].SendDate + "</time>"
+                        //+ "<span class='subject'>" + data[i].MessageTitle + "</span>"
+                        + "<span>" + data[i].MasterName + "</span>"
+                        + "</a>"
+                        + "</span>"                        
+                        + "</li>");
+                }
+            }
+        });
+    }
+
+
+</script>
+

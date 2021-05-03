@@ -1,0 +1,3 @@
+2021-02-25T14:52:20.7621098+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-02-25T14:52:20.7770028+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-02-25T14:52:20.7790285+05:30  [INF] Content root path: "E:\Application And Project\AssetsManagementSystem\AssetsWebApi" (b5d60022)

@@ -1,0 +1,4 @@
+2021-04-13T12:49:14.1400817+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-04-13T12:49:14.1574465+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-04-13T12:49:14.1596966+05:30  [INF] Content root path: "E:\Application And Project\AssetsManagementSystem\CPanelManager" (b5d60022)
+2021-04-13T12:49:28.0353477+05:30 800001e8-0005-fc00-b63f-84710c7967bb [INF] User AMIT KUBADE successfully logged in. (c1be5eb9)
